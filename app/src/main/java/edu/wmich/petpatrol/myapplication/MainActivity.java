@@ -1,5 +1,5 @@
 package edu.wmich.petpatrol.myapplication;
-
+//main activity that holds all the fragments.
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
