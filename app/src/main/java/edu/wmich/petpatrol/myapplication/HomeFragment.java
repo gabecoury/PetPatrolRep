@@ -12,9 +12,9 @@ import android.widget.Button;
 
 public class HomeFragment extends Fragment {
 
-    private Button mReport;
-    private Button mFind;
-    private Button mAdopt;
+    private Button mButtonReport;
+    private Button mButtonFind;
+    private Button mButtonAdopt;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -26,11 +26,11 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        mReport = (Button) v.findViewById(R.id.buttonReport);
-        mFind = (Button) v.findViewById(R.id.buttonFind);
-        mAdopt = (Button) v.findViewById(R.id.buttonAdopt);
+        mButtonReport = (Button) v.findViewById(R.id.buttonReport);
+        mButtonFind = (Button) v.findViewById(R.id.buttonFind);
+        mButtonAdopt = (Button) v.findViewById(R.id.buttonAdopt);
 
-        mReport.setOnClickListener(new View.OnClickListener() {
+        mButtonReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new AddReportFragment();
@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        mFind.setOnClickListener(new View.OnClickListener() {
+        mButtonFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new FinderFragment();
@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        mAdopt.setOnClickListener(new View.OnClickListener() {
+        mButtonAdopt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new AdoptFragment();

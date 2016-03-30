@@ -17,7 +17,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/textViewReportType"
             android:text="Select a Report Type:"
-            android:textSize="20sp" />
+            android:textSize="15sp"
+            android:layout_gravity="center_vertical" />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -31,7 +32,8 @@
                 android:text="Pet"
                 android:id="@+id/radioButtonPet"
                 android:checked="false"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp" />
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -39,7 +41,8 @@
                 android:text="Event"
                 android:id="@+id/radioButtonEvent"
                 android:checked="false"
-                android:layout_marginLeft="10dp" />
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp" />
         </RadioGroup>
     </LinearLayout>
 
@@ -75,7 +78,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="5dp">
 
             <Button
                 android:layout_width="wrap_content"
@@ -83,7 +86,8 @@
                 android:text="Select Start Date"
                 android:id="@+id/buttonEventStartDate"
                 android:layout_below="@+id/textViewEventName"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textSize="15sp" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -93,15 +97,8 @@
                 android:layout_toRightOf="@+id/buttonEventStartDate"
                 android:layout_marginLeft="10dp"
                 android:layout_below="@+id/editTextEventName"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+                android:layout_weight="1"
+                android:textSize="15sp" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -109,7 +106,9 @@
                 android:text="Select Start Time"
                 android:id="@+id/buttonEventStartTime"
                 android:layout_below="@+id/textViewEventName"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -119,29 +118,33 @@
                 android:layout_toRightOf="@+id/buttonEventStartTime"
                 android:layout_marginLeft="10dp"
                 android:layout_below="@+id/editTextEventName"
-                android:layout_weight="1" />
-        </LinearLayout>
+                android:layout_weight="1"
+                android:textSize="15sp" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Location"
-            android:id="@+id/buttonEventLocation"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="5dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Location"
+                android:id="@+id/buttonEventLocation"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Contact Number:"
                 android:id="@+id/textViewEventContact"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -150,26 +153,35 @@
                 android:ems="10"
                 android:id="@+id/editTextEventContact"
                 android:hint="optional"
-                android:phoneNumber="true" />
+                android:phoneNumber="true"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_vertical" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Details:"
-            android:id="@+id/textViewEventDetails"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp" />
-
-        <EditText
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:id="@+id/editTextEventDetails"
-            android:textSize="20sp"
-            android:scrollIndicators="right"
-            android:hint="optional"
-            android:gravity="top|left"
-            android:layout_marginTop="10dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Details:"
+                android:id="@+id/textViewEventDetails"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextEventDetails"
+                android:textSize="20sp"
+                android:scrollIndicators="right"
+                android:hint="optional"
+                android:gravity="top|left"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"
@@ -177,7 +189,8 @@
             android:text="Submit"
             android:id="@+id/buttonEventSubmit"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="5dp"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
@@ -185,7 +198,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
+        android:visibility="invisible"
         android:id="@+id/LinearLayoutPet">
 
         <LinearLayout
@@ -199,11 +212,11 @@
                 android:layout_height="wrap_content"
                 android:text="Status:"
                 android:id="@+id/textViewPetStatus"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -212,7 +225,8 @@
                     android:text="Lost"
                     android:id="@+id/radioButtonPetLost"
                     android:checked="false"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_marginLeft="5dp"
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -220,22 +234,18 @@
                     android:text="Found"
                     android:id="@+id/radioButtonPetFound"
                     android:checked="false"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_marginLeft="5dp"
+                    android:textSize="15sp" />
             </RadioGroup>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Location:"
                 android:id="@+id/textViewPetLocation"
-                android:textSize="20sp" />
+                android:textSize="15sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -248,7 +258,8 @@
                     android:text="Current"
                     android:id="@+id/radioButtonPetCurrentLocation"
                     android:checked="false"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_marginLeft="5dp"
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -256,16 +267,17 @@
                     android:text="Custom"
                     android:id="@+id/radioButtonPetCustomLocation"
                     android:checked="false"
-                    android:layout_marginLeft="10dp" />
+                    android:layout_marginLeft="5dp"
+                    android:textSize="15sp" />
             </RadioGroup>
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="35dp"
                 android:text="Select"
                 android:id="@+id/buttonCustomLocationSelect"
-                android:textSize="10sp"
-                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:layout_marginLeft="5dp"
                 android:visibility="visible" />
         </LinearLayout>
 
@@ -281,17 +293,17 @@
                 android:text="Type of Pet:"
                 android:id="@+id/textViewPetType"
                 android:layout_gravity="center_vertical"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <Spinner
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:id="@+id/spinner"
                 android:spinnerMode="dialog" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
@@ -301,13 +313,15 @@
                 android:layout_height="wrap_content"
                 android:text="Pet Color/Description:"
                 android:id="@+id/textViewPetDescription"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextPetDescription"
-                android:hint="Enter in a short description" />
+                android:hint="Enter in a short description"
+                android:textIsSelectable="false"
+                android:textSize="15sp" />
 
         </LinearLayout>
 
@@ -318,40 +332,42 @@
             android:layout_marginTop="10dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Pet Name:"
                 android:id="@+id/textViewPetName"
-                android:textSize="20sp" />
+                android:textSize="15sp"
+                android:layout_weight="1" />
 
             <EditText
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextPetName"
-                android:hint="optional" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp" >
+                android:hint="optional"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:textSize="15sp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Contact Number:"
                 android:id="@+id/textViewPetContact"
-                android:textSize="20sp" />
+                android:textSize="15sp"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
                 android:ems="10"
                 android:id="@+id/editTextPetContact"
                 android:hint="optional"
-                android:phoneNumber="true" />
+                android:phoneNumber="true"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -365,25 +381,27 @@
                 android:layout_height="wrap_content"
                 android:text="Details:"
                 android:id="@+id/textViewPetDetails"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <EditText
-                android:layout_width="match_parent"
+                android:layout_width="400dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextPetDetails"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:scrollIndicators="right"
                 android:hint="optional"
-                android:gravity="top|left" />
-        </LinearLayout>
+                android:gravity="top|left"
+                android:layout_marginLeft="5dp" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:id="@+id/buttonPetSubmit"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:text="Submit"
+                android:id="@+id/buttonPetSubmit"
+                android:layout_gravity="center_horizontal"
+                android:textSize="15sp"
+                android:layout_marginLeft="20dp" />
+        </LinearLayout>
 
     </LinearLayout>
 
