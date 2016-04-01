@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
@@ -17,6 +18,21 @@ public class MainActivity extends SingleFragmentActivity {
 
     final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 124;
 
+    // Check permissions onResume in case app was shelved by pressing home button but not
+    // killed in memory, after permissions were denied
+    @Override
+    protected void onResume()
+    {
+        int currentAPI = android.os.Build.VERSION.SDK_INT;
+        if (currentAPI >= android.os.Build.VERSION_CODES.M){
+            checkForPermissions();
+        } else{
+            // API version less than 23
+            System.out.println("API less than 23");
+        }
+        super.onResume();
+    }
+
     @Override
     protected Fragment createFragment(){
 
@@ -28,7 +44,6 @@ public class MainActivity extends SingleFragmentActivity {
             // API version less than 23
             System.out.println("API less than 23");
         }
-
         return new HomeFragment();
     }
 
