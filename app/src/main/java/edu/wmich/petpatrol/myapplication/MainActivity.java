@@ -1,7 +1,9 @@
 package edu.wmich.petpatrol.myapplication;
 //main activity that holds all the fragments.
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
@@ -19,6 +21,19 @@ public class MainActivity extends SingleFragmentActivity {
     protected Fragment createFragment(){
 
         //Ask for permissions, as done by the OSMDroid sample APP
+        int currentAPI = android.os.Build.VERSION.SDK_INT;
+        if (currentAPI >= android.os.Build.VERSION_CODES.M){
+            checkForPermissions();
+        } else{
+            // API version less than 23
+            System.out.println("API less than 23");
+        }
+
+        return new HomeFragment();
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private void checkForPermissions(){
         List<String> permissions = new ArrayList<>();
         String message = "Pet Patrol requires these permissions:";
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -33,8 +48,6 @@ public class MainActivity extends SingleFragmentActivity {
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             String[] params = permissions.toArray(new String[permissions.size()]);
             requestPermissions(params, REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS);
-        } // else: We already have permissions, so handle as normal
-
-        return new HomeFragment();
+        }
     }
 }
