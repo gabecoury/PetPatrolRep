@@ -8,5 +8,7 @@
     <string name="adopt_button">Adopt An Animal</string>
     <string name="imgViewLogo">Pet Patrol Logo</string>
     <string name="imageViewLogo">Image View Logo</string>
+    <string name="selectOption">Please make a selection from one of the options above</string>
+
 
 </resources>
