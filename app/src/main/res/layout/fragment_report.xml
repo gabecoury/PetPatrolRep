@@ -386,5 +386,16 @@
             android:layout_marginTop="10dp" />
 
     </LinearLayout>
+    
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/selectOption"
+        android:id="@+id/selectOption"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:gravity="center_vertical|center|center_horizontal"
+        android:paddingTop="60dp"
+        android:textStyle="bold"/>
 
 </LinearLayout>
