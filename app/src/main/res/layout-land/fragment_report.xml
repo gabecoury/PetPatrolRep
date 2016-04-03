@@ -6,6 +6,19 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:paddingBottom="16dp">
+    
+<!--
+CIS 4700: Mobile Commerce Development
+Spring 2016
+Due date: 04/03/16
+Date completed: 04/03/16
+*************************************
+* Program Explanation
+* This is the xml code for the semester class project. All the code below is necessary for a well function app.
+* The user will be asked to make a selection between two radio buttons.  Once a selection has been made, more options
+* appear with the help of the java code and the user can fill out the rest of the report.
+*************************************
+-->
 
     <LinearLayout
         android:orientation="horizontal"
