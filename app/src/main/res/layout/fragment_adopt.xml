@@ -2,6 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    
+<!--
+CIS 4700: Mobile Commerce Development
+Spring 2016
+Due date: 04/03/16
+Date completed: 04/03/16
+*************************************
+* Program Explanation
+* This is the xml code for the semester class project. The adopt page contains a relative layout and a textview. The user will be able 
+* to find places in their area that may have adoption functions going on.
+*************************************
+-->
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
