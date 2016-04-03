@@ -2,6 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    
+<!--
+CIS 4700: Mobile Commerce Development
+Spring 2016
+Due date: 04/03/16
+Date completed: 04/03/16
+*************************************
+* Program Explanation
+* This is the xml code for the semester class project.  The code below makes a map appear for the user to find an animal/pet that
+* they may have lost. It's simple and has a relative layout.
+*************************************
+-->
 
 
     <org.osmdroid.views.MapView android:id="@+id/map"
