@@ -3,3 +3,14 @@
     android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"/>
+    
+<!--
+CIS 4700: Mobile Commerce Development
+Spring 2016
+Due date: 04/03/16
+Date completed: 04/03/16
+*************************************
+* Program Explanation
+* This is the xml code for the semester class project. This activity contains the fragment_container in a frame layout. 
+*************************************
+-->
