@@ -5,6 +5,19 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+  
+<!--
+CIS 4700: Mobile Commerce Development
+Spring 2016
+Due date: 04/03/16
+Date completed: 04/03/16
+*************************************
+* Program Explanation
+* This is the xml code for the semester class project. All the code below is necessary for a well function app.
+* The user will be asked to make a selection between three buttons, report a pet, find a pet, or adopt a pet.  There is 
+* also an imageview with the logo.
+*************************************
+-->
 
     <LinearLayout
         android:orientation="vertical"
