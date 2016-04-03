@@ -100,22 +100,6 @@ public class FinderFragment extends Fragment implements LocationListener {
             latit = 0;
             longi = 0;
         }
-        //init mapcontroller and give an initial point
-        IMapController mapController = map.getController();
-        mapController.setZoom(13);
-        GeoPoint startPoint = new GeoPoint(42.6549, -86.2032);
-        mapController.setCenter(startPoint);
-
-        //Place down the marker riiiight in the center and make it say cool things
-        Marker startMarker = new Marker(map);
-        startMarker.setPosition(startPoint);
-        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        startMarker.setTitle("Saugatuck");
-        startMarker.setSnippet("Coordinates: ");
-        GeoPoint location = startMarker.getPosition();
-        startMarker.setSubDescription("Lat: " + location.getLatitude() + ", Long: " + location.getLongitude());
-
-        map.getOverlays().add(startMarker);
 
         return v;
     }
