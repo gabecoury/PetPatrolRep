@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.Marker;
@@ -78,6 +79,8 @@ public class FinderFragment extends Fragment implements LocationListener {
             map.getOverlays().add(startMarker);
 
         } catch (SecurityException se) {
+            Log.d("Security Exception", "GPS access not enabled");
+            Toast.makeText(getParentFragment().getContext(), "Please allow access to Location.", Toast.LENGTH_LONG).show();
             latit = 0;
             longi = 0;
         }
