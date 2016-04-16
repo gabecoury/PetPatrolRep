@@ -31,7 +31,7 @@ Date completed: 04/03/16
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textViewReportType"
-            android:text="Select a Report Type:"
+            android:text="@string/select_report_type"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"/>
@@ -45,7 +45,7 @@ Date completed: 04/03/16
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pet"
+                android:text="@string/pet"
                 android:id="@+id/radioButtonPet"
                 android:checked="false"
                 android:layout_marginLeft="10dp"
@@ -55,7 +55,7 @@ Date completed: 04/03/16
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Event"
+                android:text="@string/event"
                 android:id="@+id/radioButtonEvent"
                 android:checked="false"
                 android:layout_marginLeft="10dp"
@@ -83,19 +83,17 @@ Date completed: 04/03/16
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Event Name:"
+                android:text="@string/event_name"
                 android:id="@+id/textViewEventName"
                 android:textSize="20sp"
-                android:textColor="#FFFFFF"
-                android:layout_alignParentTop="false" />
+                android:textColor="#FFFFFF" />
 
             <EditText
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextEventName"
-                android:hint="Enter in Name"
-                android:textColor="#FFFFFF"
-                android:layout_toRightOf="@+id/textViewEventName" />
+                android:hint="@string/enter_in_name"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <LinearLayout
@@ -107,20 +105,17 @@ Date completed: 04/03/16
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select Start Date"
+                android:text="@string/select_start_date"
                 android:id="@+id/buttonEventStartDate"
-                android:layout_below="@+id/textViewEventName"
                 android:layout_weight="1"
                 android:background="#56b1fb"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select End Date"
+                android:text="@string/select_end_date"
                 android:id="@+id/buttonEventEndDate"
-                android:layout_toRightOf="@+id/buttonEventStartDate"
                 android:layout_marginLeft="10dp"
-                android:layout_below="@+id/editTextEventName"
                 android:layout_weight="1"
                 android:background="#56b1fb"/>
 
@@ -135,20 +130,17 @@ Date completed: 04/03/16
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select Start Time"
+                android:text="@string/select_start_time"
                 android:id="@+id/buttonEventStartTime"
-                android:layout_below="@+id/textViewEventName"
                 android:layout_weight="1"
                 android:background="#56b1fb"/>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Select End Time"
+                android:text="@string/select_end_time"
                 android:id="@+id/buttonEventEndTime"
-                android:layout_toRightOf="@+id/buttonEventStartTime"
                 android:layout_marginLeft="10dp"
-                android:layout_below="@+id/editTextEventName"
                 android:layout_weight="1"
                 android:background="#56b1fb"/>
         </LinearLayout>
@@ -156,7 +148,7 @@ Date completed: 04/03/16
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Location"
+            android:text="@string/select_location"
             android:id="@+id/buttonEventLocation"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
@@ -171,7 +163,7 @@ Date completed: 04/03/16
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contact Number:"
+                android:text="@string/contact_number"
                 android:id="@+id/textViewEventContact"
                 android:textSize="20sp"
                 android:textColor="#FFFFFF"/>
@@ -182,15 +174,14 @@ Date completed: 04/03/16
                 android:inputType="phone"
                 android:ems="10"
                 android:id="@+id/editTextEventContact"
-                android:hint="optional"
-                android:phoneNumber="true"
+                android:hint="@string/optional"
                 android:textColor="#FFFFFF"/>
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Details:"
+            android:text="@string/details"
             android:id="@+id/textViewEventDetails"
             android:textSize="20sp"
             android:layout_marginTop="10dp"
@@ -202,7 +193,7 @@ Date completed: 04/03/16
             android:id="@+id/editTextEventDetails"
             android:textSize="20sp"
             android:scrollIndicators="right"
-            android:hint="optional"
+            android:hint="@string/optional"
             android:gravity="top|left"
             android:layout_marginTop="10dp"
             android:textColor="#FFFFFF"/>
@@ -210,7 +201,7 @@ Date completed: 04/03/16
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit"
+            android:text="@string/submit"
             android:id="@+id/buttonEventSubmit"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
@@ -234,7 +225,7 @@ Date completed: 04/03/16
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Status:"
+                android:text="@string/status"
                 android:id="@+id/textViewPetStatus"
                 android:textSize="20sp"
                 android:textColor="#FFFFFF"/>
@@ -247,7 +238,7 @@ Date completed: 04/03/16
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lost"
+                    android:text="@string/lost"
                     android:id="@+id/radioButtonPetLost"
                     android:checked="false"
                     android:textColor="#FFFFFF"
@@ -256,7 +247,7 @@ Date completed: 04/03/16
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Found"
+                    android:text="@string/found"
                     android:id="@+id/radioButtonPetFound"
                     android:checked="false"
                     android:layout_marginLeft="10dp"
@@ -286,7 +277,7 @@ Date completed: 04/03/16
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Current"
+                    android:text="@string/current"
                     android:id="@+id/radioButtonPetCurrentLocation"
                     android:checked="false"
                     android:layout_marginLeft="10dp"
@@ -295,7 +286,7 @@ Date completed: 04/03/16
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Custom"
+                    android:text="@string/custom"
                     android:id="@+id/radioButtonPetCustomLocation"
                     android:checked="false"
                     android:layout_marginLeft="10dp"
@@ -322,7 +313,7 @@ Date completed: 04/03/16
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Type of Pet:"
+                android:text="@string/type_of_pet"
                 android:id="@+id/textViewPetType"
                 android:layout_gravity="center_vertical"
                 android:textSize="20sp"
@@ -345,7 +336,7 @@ Date completed: 04/03/16
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pet Color/Description:"
+                android:text="@string/pet_color_description"
                 android:id="@+id/textViewPetDescription"
                 android:textSize="20sp"
                 android:textColor="#FFFFFF"/>
@@ -355,7 +346,7 @@ Date completed: 04/03/16
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextPetDescription"
                 android:textColor="#FFFFFF"
-                android:hint="Enter in a short description" />
+                android:hint="@string/enter_in_a_short_description" />
 
         </LinearLayout>
 
@@ -368,7 +359,7 @@ Date completed: 04/03/16
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pet Name:"
+                android:text="@string/pet_name"
                 android:id="@+id/textViewPetName"
                 android:textSize="20sp"
                 android:textColor="#FFFFFF"/>
@@ -377,7 +368,7 @@ Date completed: 04/03/16
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextPetName"
-                android:hint="optional"
+                android:hint="@string/optional"
                 android:textColor="#FFFFFF"/>
         </LinearLayout>
 
@@ -390,7 +381,7 @@ Date completed: 04/03/16
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contact Number:"
+                android:text="@string/contact_number"
                 android:id="@+id/textViewPetContact"
                 android:textSize="20sp"
                 android:textColor="#FFFFFF"/>
@@ -402,8 +393,7 @@ Date completed: 04/03/16
                 android:ems="10"
                 android:textColor="#FFFFFF"
                 android:id="@+id/editTextPetContact"
-                android:hint="optional"
-                android:phoneNumber="true" />
+                android:hint="@string/optional" />
         </LinearLayout>
 
         <LinearLayout
@@ -415,7 +405,7 @@ Date completed: 04/03/16
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Details:"
+                android:text="@string/details"
                 android:id="@+id/textViewPetDetails"
                 android:textSize="20sp"
                 android:textColor="#FFFFFF"/>
@@ -426,7 +416,7 @@ Date completed: 04/03/16
                 android:id="@+id/editTextPetDetails"
                 android:textSize="20sp"
                 android:scrollIndicators="right"
-                android:hint="optional"
+                android:hint="@string/optional"
                 android:gravity="top|left"
                 android:textColor="#FFFFFF"/>
         </LinearLayout>
@@ -434,7 +424,7 @@ Date completed: 04/03/16
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit"
+            android:text="@string/submit"
             android:id="@+id/buttonPetSubmit"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"

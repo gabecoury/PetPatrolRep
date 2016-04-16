@@ -21,6 +21,31 @@ Date completed: 04/03/16
     <string name="imgViewLogo">Pet Patrol Logo</string>
     <string name="imageViewLogo">Image View Logo</string>
     <string name="selectOption">Please make a selection from one of the options above</string>
+    <string name="location">Location:</string>
+    <string name="select">Select</string>
+    <string name="select_report_type">Select a Report Type:</string>
+    <string name="pet">Pet</string>
+    <string name="event">Event</string>
+    <string name="event_name">Event Name:</string>
+    <string name="enter_in_name">Enter in Name</string>
+    <string name="select_start_date">Select Start Date</string>
+    <string name="select_start_time">Select Start Time</string>
+    <string name="select_end_time">Select End Time</string>
+    <string name="select_end_date">Select End Date</string>
+    <string name="select_location">Select Location</string>
+    <string name="contact_number">Contact Number:</string>
+    <string name="details">Details:</string>
+    <string name="submit">Submit</string>
+    <string name="status">Status:</string>
+    <string name="lost">Lost</string>
+    <string name="found">Found</string>
+    <string name="current">Current</string>
+    <string name="custom">Custom</string>
+    <string name="type_of_pet">Type of Pet:</string>
+    <string name="pet_color_description">Pet Color/Description:</string>
+    <string name="enter_in_a_short_description">Enter in a short description</string>
+    <string name="pet_name">Pet Name:</string>
+    <string name="optional">optional</string>
 
 
 </resources>
