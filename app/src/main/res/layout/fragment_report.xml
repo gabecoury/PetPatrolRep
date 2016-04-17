@@ -236,7 +236,8 @@ Date completed: 04/03/16
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/radioGroupPetStatus">
 
                 <RadioButton
                     android:layout_width="wrap_content"
