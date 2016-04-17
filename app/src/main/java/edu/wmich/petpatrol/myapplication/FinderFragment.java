@@ -31,6 +31,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 
 //this class is for maps with lost pets and reported pets pinned on them.
 public class FinderFragment extends Fragment implements LocationListener {
@@ -54,6 +55,8 @@ public class FinderFragment extends Fragment implements LocationListener {
 
         DownloadWebpageTask task = new DownloadWebpageTask();
         task.execute("http://testpetpatrol.herokuapp.com");
+
+        Events events = Events.get(getContext());
 
         //put the map in the page
         map = (MapView) v.findViewById(R.id.map);
@@ -79,20 +82,53 @@ public class FinderFragment extends Fragment implements LocationListener {
                 locationNullFlag = true;
             }
 
+            //Here's where we would get the list of lost pets. IF THE API WORKED
+            String[] names = {"Cute Dog", "Ugly Dog", "Short Dog", "The Fattest Cat I've Ever Seen",
+                "Kitty"};
+            String[] details = {"OMG CUTIE DOG", "The face that only the assumed owner could love",
+                    "who bred in these qualities", "it's like garfield up in here",
+                    ":3"};
+            for(int i = 0; i < 5; i++){
+                Event newEvent = new Event();
+                newEvent.setEventName(names[i]);
+                newEvent.setDetails(details[i]);
+                newEvent.setContactNumber(i);
+                Location newLocation = new Location("");
 
-            // set marker
-            Log.d("Current Location", "Lat: " + latit + ", Long: " + longi);
+                //variety
+                String latitude = "42.2" + i + "369117";
+
+                newLocation.setLatitude(Float.parseFloat(latitude));
+                newLocation.setLongitude(-85.58898926);
+                newEvent.setLocation(newLocation);
+
+                events.addEvent(newEvent);
+            }
+
+            List<Event> listEvents = events.getEvents();
+
             IMapController mapController = map.getController();
             mapController.setZoom(13);
+
             GeoPoint startPoint = new GeoPoint(latit, longi);
-            Marker startMarker = new Marker(map);
-            startMarker.setPosition(startPoint);
-            startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
             mapController.setCenter(startPoint);
-            startMarker.setTitle("Current Location");
-            startMarker.setSnippet("Coordinates: ");
-            startMarker.setSubDescription("Lat: " + startPoint.getLatitude() + ", Long: " + startPoint.getLongitude());
-            map.getOverlays().add(startMarker);
+
+            for (Event event : listEvents){
+                Location eventLocation = event.getLocation();
+
+                Marker eventMarker = new Marker(map);
+
+                eventMarker.setPosition(new GeoPoint(eventLocation.getLatitude(),
+                        eventLocation.getLongitude()));
+                eventMarker.setTitle(event.getEventName());
+                eventMarker.setSnippet(event.getDetails());
+                eventMarker.setSubDescription(event.getContactNumber() + "");
+
+                map.getOverlays().add(eventMarker);
+
+                Log.d("Location", "Adding Location with Lat: " + eventLocation.getLatitude()
+                + " and Long: " + eventLocation.getLongitude());
+            }
 
         } catch (SecurityException se) {
             Log.d("Security Exception", "GPS access not enabled");

@@ -1,5 +1,7 @@
 package edu.wmich.petpatrol.myapplication;
 
+import android.location.Location;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -10,7 +12,7 @@ public class Event {
     private String mEventName;
     private Date mEventStartDateTime;
     private Date mEventEndDateTime;
-    // Insert Location variable
+    private Location mLocation;
     private int mContactNumber;
     private String mDetails;
 
@@ -67,4 +69,8 @@ public class Event {
     public void setDetails(String details) {
         this.mDetails = details;
     }
+
+    public Location getLocation() { return mLocation; }
+
+    public void setLocation(Location location) { this.mLocation = location; }
 }
