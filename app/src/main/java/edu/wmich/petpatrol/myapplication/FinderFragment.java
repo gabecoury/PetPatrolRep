@@ -18,6 +18,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -34,7 +36,7 @@ import java.net.URL;
 import java.util.List;
 
 //this class is for maps with lost pets and reported pets pinned on them.
-public class FinderFragment extends Fragment implements LocationListener {
+public class FinderFragment extends Fragment implements LocationListener{
 
     final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 125;
 
@@ -55,8 +57,6 @@ public class FinderFragment extends Fragment implements LocationListener {
 
         DownloadWebpageTask task = new DownloadWebpageTask();
         task.execute("http://testpetpatrol.herokuapp.com");
-
-        Events events = Events.get(getContext());
 
         //put the map in the page
         map = (MapView) v.findViewById(R.id.map);
@@ -82,30 +82,9 @@ public class FinderFragment extends Fragment implements LocationListener {
                 locationNullFlag = true;
             }
 
-            //Here's where we would get the list of lost pets. IF THE API WORKED
-            String[] names = {"Cute Dog", "Ugly Dog", "Short Dog", "The Fattest Cat I've Ever Seen",
-                "Kitty"};
-            String[] details = {"OMG CUTIE DOG", "The face that only the assumed owner could love",
-                    "who bred in these qualities", "it's like garfield up in here",
-                    ":3"};
-            for(int i = 0; i < 5; i++){
-                Event newEvent = new Event();
-                newEvent.setEventName(names[i]);
-                newEvent.setDetails(details[i]);
-                newEvent.setContactNumber(i);
-                Location newLocation = new Location("");
+            FetchItemsTask ushahidi = new FetchItemsTask(this);
+            ushahidi.execute(ushahidi.GET_PETS);
 
-                //variety
-                String latitude = "42.2" + i + "369117";
-
-                newLocation.setLatitude(Float.parseFloat(latitude));
-                newLocation.setLongitude(-85.58898926);
-                newEvent.setLocation(newLocation);
-
-                events.addEvent(newEvent);
-            }
-
-            List<Event> listEvents = events.getEvents();
 
             IMapController mapController = map.getController();
             mapController.setZoom(13);
@@ -113,22 +92,6 @@ public class FinderFragment extends Fragment implements LocationListener {
             GeoPoint startPoint = new GeoPoint(latit, longi);
             mapController.setCenter(startPoint);
 
-            for (Event event : listEvents){
-                Location eventLocation = event.getLocation();
-
-                Marker eventMarker = new Marker(map);
-
-                eventMarker.setPosition(new GeoPoint(eventLocation.getLatitude(),
-                        eventLocation.getLongitude()));
-                eventMarker.setTitle(event.getEventName());
-                eventMarker.setSnippet(event.getDetails());
-                eventMarker.setSubDescription(event.getContactNumber() + "");
-
-                map.getOverlays().add(eventMarker);
-
-                Log.d("Location", "Adding Location with Lat: " + eventLocation.getLatitude()
-                + " and Long: " + eventLocation.getLongitude());
-            }
 
         } catch (SecurityException se) {
             Log.d("Security Exception", "GPS access not enabled");
@@ -138,6 +101,61 @@ public class FinderFragment extends Fragment implements LocationListener {
         }
 
         return v;
+    }
+
+    public void updatePosts(JSONObject posts) {
+        Events events = Events.get(getContext());
+
+        try {
+
+            Log.d("Finder Fragment", posts.getInt("count") + "");
+
+        } catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        //Here's where we would get the list of lost pets. IF THE API WORKED
+        String[] names = {"Cute Dog", "Ugly Dog", "Short Dog", "The Fattest Cat I've Ever Seen",
+                "Kitty"};
+        String[] details = {"OMG CUTIE DOG", "The face that only the assumed owner could love",
+                "who bred in these qualities", "it's like garfield up in here",
+                ":3"};
+        for(int i = 0; i < 5; i++){
+            Event newEvent = new Event();
+            newEvent.setEventName(names[i]);
+            newEvent.setDetails(details[i]);
+            newEvent.setContactNumber(i);
+            Location newLocation = new Location("");
+
+            //variety
+            String latitude = "42.2" + i + "369117";
+
+            newLocation.setLatitude(Float.parseFloat(latitude));
+            newLocation.setLongitude(-85.58898926);
+            newEvent.setLocation(newLocation);
+
+            events.addEvent(newEvent);
+        }
+
+        List<Event> listEvents = events.getEvents();
+
+        for (Event event : listEvents){
+            Location eventLocation = event.getLocation();
+
+            Marker eventMarker = new Marker(map);
+
+            eventMarker.setPosition(new GeoPoint(eventLocation.getLatitude(),
+                    eventLocation.getLongitude()));
+            eventMarker.setTitle(event.getEventName());
+            eventMarker.setSnippet(event.getDetails());
+            eventMarker.setSubDescription(event.getContactNumber() + "");
+
+            map.getOverlays().add(eventMarker);
+
+            Log.d("Location", "Adding Location with Lat: " + eventLocation.getLatitude()
+                    + " and Long: " + eventLocation.getLongitude());
+        }
+
     }
 
     private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
