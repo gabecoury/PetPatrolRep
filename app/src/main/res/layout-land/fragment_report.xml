@@ -72,8 +72,8 @@ Date completed: 04/03/16
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone"
-        android:id="@+id/LinearLayoutEvent">
+        android:id="@+id/LinearLayoutEvent"
+        android:visibility="gone">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -269,35 +269,11 @@ Date completed: 04/03/16
                 android:textSize="20sp"
                 android:textColor="#FFFFFF"/>
 
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/current"
-                    android:id="@+id/radioButtonPetCurrentLocation"
-                    android:checked="false"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#FFFFFF"/>
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/custom"
-                    android:id="@+id/radioButtonPetCustomLocation"
-                    android:checked="false"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#FFFFFF"/>
-            </RadioGroup>
-
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:text="@string/select"
-                android:id="@+id/buttonCustomLocationSelect"
+                android:id="@+id/buttonLocationSelect"
                 android:textSize="10sp"
                 android:layout_marginLeft="10dp"
                 android:visibility="visible"
@@ -442,6 +418,6 @@ Date completed: 04/03/16
         android:gravity="center_vertical|center|center_horizontal"
         android:paddingTop="60dp"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"/>
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>
