@@ -46,7 +46,8 @@ Date completed: 04/03/16
     <string name="enter_in_a_short_description">Enter in a short description</string>
     <string name="pet_name">Pet Name:</string>
     <string name="optional">optional</string>
-    <string name="date_picker_title">Event Starts:</string>
+    <string name="date_picker_title">Select a Date:</string>
+    <string name="time_picker_title">Select a Time:</string>
 
 
 </resources>
