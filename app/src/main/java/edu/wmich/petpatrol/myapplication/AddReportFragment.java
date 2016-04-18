@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.Calendar;
 import java.util.Date;
 
 //this class if for reporting  found pets and lost pets
@@ -27,6 +26,7 @@ public class AddReportFragment extends Fragment{
     private static final int REQUEST_END_TIME = 3;
     private static final String DIALOG_DATE = "DialogDate";
     private static final String DIALOG_TIME = "DialogTime";
+    private static final String TAG = "AddReportFragment";
 
     private RadioGroup mRadioGroupReportType;
     private Button mPetSubmitButton;
@@ -174,16 +174,14 @@ public class AddReportFragment extends Fragment{
         mEventSubmitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-
+                if(EventNameEditText.getText().toString().equals(""))
+                {
+                    Toast.makeText(getContext(), "Please enter a Event Name.", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
 
                 mEvent.setEventName(EventNameEditText.getText().toString());
-//                Calendar cStart = Calendar.getInstance();
-//                cStart.setTimeInMillis(mEventStartDate.getTime() + mEventStartTime.getTime());
-//                Calendar cEnd = Calendar.getInstance();
-//                cEnd.setTimeInMillis(mEventEndDate.getTime() + mEventEndTime.getTime());
-//                mEvent.setEventStartDateTime(cStart.getTime());
-//                mEvent.setEventEndDateTime(cEnd.getTime());
                 Date combinedStart = new Date(mEventStartDate.getYear(), mEventStartDate.getMonth(), mEventStartDate.getDate(), mEventStartTime.getHours(),mEventStartTime.getMinutes());
                 Date combinedEnd = new Date(mEventEndDate.getYear(), mEventEndDate.getMonth(), mEventEndDate.getDate(), mEventEndTime.getHours(),mEventEndTime.getMinutes());
                 mEvent.setEventStartDateTime(combinedStart);
@@ -191,8 +189,8 @@ public class AddReportFragment extends Fragment{
                 mEvent.setContactNumber(Integer.parseInt(EventContactEditText.getText().toString()));
                 mEvent.setDetails(EventDetailsEditText.getText().toString());
 
-                Toast.makeText(getContext(), "Event Created: " + mEvent.getEventName() + " will start on " + mEvent.getEventStartDateTime().toString() + " and end on" + mEvent.getEventEndDateTime().toString() + ". Please call " + mEvent.getContactNumber() + " details: " + mEvent.getDetails(),Toast.LENGTH_LONG).show();
-
+                Toast.makeText(getContext(), "Event Created: " + mEvent.getEventName() + " will start on " + mEvent.getEventStartDateTime().toString() + " and end on " + mEvent.getEventEndDateTime().toString() + ". Please call " + mEvent.getContactNumber() + " details: " + mEvent.getDetails(),Toast.LENGTH_LONG).show();
+                Log.i(TAG,"Event Created: " + mEvent.getEventName() + " will start on " + mEvent.getEventStartDateTime().toString() + " and end on " + mEvent.getEventEndDateTime().toString() + ". Please call " + mEvent.getContactNumber() + " details: " + mEvent.getDetails());
                 // Insert Code for sending Event Data to the server
             }
         });
