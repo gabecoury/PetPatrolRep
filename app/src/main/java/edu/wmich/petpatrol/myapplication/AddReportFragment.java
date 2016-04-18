@@ -44,6 +44,11 @@ public class AddReportFragment extends Fragment{
     private EditText EventNameEditText;
     private EditText EventContactEditText;
     private EditText EventDetailsEditText;
+    private RadioGroup PetStatusRadioGroup;
+    private EditText PetDescriptionEditText;
+    private EditText PetNameEditText;
+    private EditText PetContactEditText;
+    private EditText PetDetailsEditText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,11 @@ public class AddReportFragment extends Fragment{
         EventNameEditText = (EditText) v.findViewById(R.id.editTextEventName);
         EventContactEditText= (EditText) v.findViewById(R.id.editTextEventContact);
         EventDetailsEditText = (EditText) v.findViewById(R.id.editTextEventDetails);
+        PetStatusRadioGroup = (RadioGroup) v.findViewById(R.id.radioGroupPetStatus);
+        PetDescriptionEditText = (EditText) v.findViewById(R.id.editTextPetDescription);
+        PetNameEditText = (EditText) v.findViewById(R.id.editTextPetName);
+        PetContactEditText = (EditText) v.findViewById(R.id.editTextPetContact);
+        PetDetailsEditText = (EditText) v.findViewById(R.id.editTextPetDetails);
         mEventStartDate = new Date();
         mEventEndDate = new Date();
         mEventStartTime = new Date();
@@ -145,28 +155,33 @@ public class AddReportFragment extends Fragment{
         mPetSubmitButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+                switch(PetStatusRadioGroup.getCheckedRadioButtonId()) {
+                    case R.id.radioButtonPetLost:
+                        mPet.setFound(false);
+                        break;
+                    case R.id.radioButtonPetFound:
+                        mPet.setFound(true);
+                        break;
+                    default:
+                        Toast.makeText(getContext(), "Please select a Pet Status.", Toast.LENGTH_LONG).show();
+                        return;
+                }
+                if(PetDescriptionEditText.getText().toString().equals(""))
+                {
+                    Toast.makeText(getContext(), "Please enter a Pet Color/Description.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(!PetContactEditText.getText().toString().equals(""))
+                {
+                    mEvent.setContactNumber(Integer.parseInt(PetContactEditText.getText().toString()));
+                }
+                mPet.setPetDescription(PetDescriptionEditText.getText().toString());
+                mPet.setPetName(PetNameEditText.getText().toString());
+                mPet.setDetails(PetDetailsEditText.getText().toString());
 
-
-                        RadioGroup PetStatusRadioGroup = (RadioGroup) v.findViewById(R.id.radioGroupPetStatus);
-                        EditText PetDescriptionEditText = (EditText) v.findViewById(R.id.editTextPetDetails);
-                        EditText PetNameEditText = (EditText) v.findViewById(R.id.editTextPetName);
-                        EditText PetContactEditText = (EditText) v.findViewById(R.id.editTextPetContact);
-                        EditText PetDetailsEditText = (EditText) v.findViewById(R.id.editTextPetDetails);
-
-                        switch(PetStatusRadioGroup.getCheckedRadioButtonId()) {
-                            case R.id.radioButtonPetLost:
-                                mPet.setFound(false);
-                                break;
-                            case R.id.radioButtonPetFound:
-                                mPet.setFound(true);
-                                break;
-                        }
-                        mPet.setPetDescription(PetDescriptionEditText.getText().toString());
-                        mPet.setPetName(PetNameEditText.getText().toString());
-                        mPet.setContactNumber(Integer.parseInt(PetContactEditText.getText().toString()));
-                        mPet.setDetails(PetDetailsEditText.getText().toString());
-
-                        // Insert Code for sending Pet Data to the server
+                Toast.makeText(getContext(), "You reported a Lost/Found pet with a description of " + mPet.getPetDescription() + " with a name of " + mPet.getPetName() + ". You may be contacted at " + mPet.getContactNumber() + " and details: " + mPet.getDetails(), Toast.LENGTH_LONG).show();
+                Log.i(TAG, "You reported a Lost/Found pet with a description of " + mPet.getPetDescription() + " with a name of " + mPet.getPetName() + ". You may be contacted at " + mPet.getContactNumber() + " and details: " + mPet.getDetails());
+                // Insert Code for sending Pet Data to the server
 
             }
         });
@@ -179,14 +194,16 @@ public class AddReportFragment extends Fragment{
                     Toast.makeText(getContext(), "Please enter a Event Name.", Toast.LENGTH_LONG).show();
                     return;
                 }
-
+                if(!EventContactEditText.getText().toString().equals(""))
+                {
+                    mEvent.setContactNumber(Integer.parseInt(EventContactEditText.getText().toString()));
+                }
 
                 mEvent.setEventName(EventNameEditText.getText().toString());
                 Date combinedStart = new Date(mEventStartDate.getYear(), mEventStartDate.getMonth(), mEventStartDate.getDate(), mEventStartTime.getHours(),mEventStartTime.getMinutes());
                 Date combinedEnd = new Date(mEventEndDate.getYear(), mEventEndDate.getMonth(), mEventEndDate.getDate(), mEventEndTime.getHours(),mEventEndTime.getMinutes());
                 mEvent.setEventStartDateTime(combinedStart);
                 mEvent.setEventEndDateTime(combinedEnd);
-                mEvent.setContactNumber(Integer.parseInt(EventContactEditText.getText().toString()));
                 mEvent.setDetails(EventDetailsEditText.getText().toString());
 
                 Toast.makeText(getContext(), "Event Created: " + mEvent.getEventName() + " will start on " + mEvent.getEventStartDateTime().toString() + " and end on " + mEvent.getEventEndDateTime().toString() + ". Please call " + mEvent.getContactNumber() + " details: " + mEvent.getDetails(),Toast.LENGTH_LONG).show();
