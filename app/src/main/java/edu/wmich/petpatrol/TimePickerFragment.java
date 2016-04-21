@@ -1,4 +1,4 @@
-package edu.wmich.petpatrol.myapplication;
+package edu.wmich.petpatrol;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -9,12 +9,12 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
+
+import edu.wmich.petpatrol.myapplication.R;
 
 /**
  * Created by Andrew on 4/17/2016.

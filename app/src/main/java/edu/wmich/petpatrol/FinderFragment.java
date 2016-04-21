@@ -1,4 +1,4 @@
-package edu.wmich.petpatrol.myapplication;
+package edu.wmich.petpatrol;
 
 import android.os.AsyncTask;
 import android.content.Context;
@@ -8,14 +8,10 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -30,10 +26,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
+
+import edu.wmich.petpatrol.myapplication.R;
 
 //this class is for maps with lost pets and reported pets pinned on them.
 public class FinderFragment extends Fragment implements LocationListener{

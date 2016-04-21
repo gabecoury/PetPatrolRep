@@ -1,4 +1,4 @@
-package edu.wmich.petpatrol.myapplication;
+package edu.wmich.petpatrol;
 
 import android.location.Location;
 

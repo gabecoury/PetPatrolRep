@@ -1,21 +1,8 @@
-package edu.wmich.petpatrol.myapplication;
+package edu.wmich.petpatrol;
 
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.Base64;
-import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 public class FetchItemsTask extends AsyncTask<String,Void,Void> {
 

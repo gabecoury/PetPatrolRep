@@ -1,4 +1,4 @@
-package edu.wmich.petpatrol.myapplication;
+package edu.wmich.petpatrol;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Date;
+
+import edu.wmich.petpatrol.myapplication.R;
 
 //this class if for reporting  found pets and lost pets
 public class AddReportFragment extends Fragment{

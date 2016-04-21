@@ -1,10 +1,12 @@
-package edu.wmich.petpatrol.myapplication;
+package edu.wmich.petpatrol;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import edu.wmich.petpatrol.myapplication.R;
 
 //fragment to access the petfinder api.. with recyclerview for the information
 public class AdoptFragment extends Fragment{
