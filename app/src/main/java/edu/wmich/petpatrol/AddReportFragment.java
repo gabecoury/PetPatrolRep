@@ -202,6 +202,11 @@ public class AddReportFragment extends Fragment{
                 mEvent.setEventName(EventNameEditText.getText().toString());
                 Date combinedStart = new Date(mEventStartDate.getYear(), mEventStartDate.getMonth(), mEventStartDate.getDate(), mEventStartTime.getHours(),mEventStartTime.getMinutes());
                 Date combinedEnd = new Date(mEventEndDate.getYear(), mEventEndDate.getMonth(), mEventEndDate.getDate(), mEventEndTime.getHours(),mEventEndTime.getMinutes());
+
+                if(combinedEnd.getTime() < combinedStart.getTime()){
+                    Toast.makeText(getContext(), "Event End Date & Time must be after the Start Date & Time.", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 mEvent.setEventStartDateTime(combinedStart);
                 mEvent.setEventEndDateTime(combinedEnd);
                 mEvent.setDetails(EventDetailsEditText.getText().toString());

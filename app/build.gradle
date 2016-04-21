@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "edu.wmich.petpatrol.myapplication"
+        applicationId "edu.wmich.petpatrol"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
