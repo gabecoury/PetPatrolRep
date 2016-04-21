@@ -14,8 +14,6 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 import java.util.Date;
 
-import edu.wmich.petpatrol.myapplication.R;
-
 /**
  * Created by Andrew on 4/17/2016.
  */

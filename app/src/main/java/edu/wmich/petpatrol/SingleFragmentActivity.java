@@ -6,8 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import edu.wmich.petpatrol.myapplication.R;
-
 
 public abstract class SingleFragmentActivity extends AppCompatActivity {
 

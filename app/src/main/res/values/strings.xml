@@ -1,7 +1,6 @@
-
 <resources>
-    
-<!--
+
+    <!--
 CIS 4700: Mobile Commerce Development
 Spring 2016
 Due date: 04/03/16
@@ -11,7 +10,7 @@ Date completed: 04/03/16
 * These are all of the strings used throughout the app.
 *************************************
 -->
-    
+
     <string name="app_name">Pet Patrol</string>
 
     <string name="action_settings">Settings</string>

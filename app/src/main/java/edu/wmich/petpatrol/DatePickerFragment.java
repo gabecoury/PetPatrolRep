@@ -15,8 +15,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import edu.wmich.petpatrol.myapplication.R;
-
 /**
  * Created by Andrew on 4/17/2016.
  */

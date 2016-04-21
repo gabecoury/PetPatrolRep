@@ -29,8 +29,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-import edu.wmich.petpatrol.myapplication.R;
-
 //this class is for maps with lost pets and reported pets pinned on them.
 public class FinderFragment extends Fragment implements LocationListener{
 
