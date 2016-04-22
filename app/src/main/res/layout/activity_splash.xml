@@ -1,12 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.wmich.petpatrol.SplashActivity">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                tools:context="edu.wmich.petpatrol.SplashActivity"
+                android:background="#595959">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/splash_text"
+        android:id="@+id/splashText"
+        android:textStyle="bold"
+        android:textSize="87sp"
+        android:typeface="sans"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:background="#56b1fb"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/made_possible"
+        android:id="@+id/textViewMadePossible"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/project_managers"
+        android:id="@+id/projectManagers"
+        android:layout_below="@+id/textViewMadePossible"
+        android:layout_alignParentStart="true"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/integration"
+        android:id="@+id/textViewIntegration"
+        android:layout_below="@+id/projectManagers"
+        android:layout_alignParentStart="true"
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/server_administrators"
+        android:id="@+id/serverAdministration"
+        android:layout_below="@+id/textViewIntegration"
+        android:layout_alignParentStart="true"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ui_ux"
+        android:id="@+id/textViewUIUX"
+        android:layout_below="@+id/serverAdministration"
+        android:layout_alignParentStart="true"
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"
+        android:textStyle="normal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/development"
+        android:id="@+id/textViewDevelopment"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:layout_below="@+id/textViewUIUX"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/professor"
+        android:id="@+id/textViewProf"
+        android:layout_below="@+id/textViewDevelopment"
+        android:layout_alignParentStart="true"
+        android:textSize="22sp"
+        android:textColor="#FFFFFF"/>
 </RelativeLayout>
