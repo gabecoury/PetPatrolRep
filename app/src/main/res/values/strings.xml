@@ -47,6 +47,15 @@ Date completed: 04/03/16
     <string name="optional">optional</string>
     <string name="date_picker_title">Select a Date:</string>
     <string name="time_picker_title">Select a Time:</string>
+    
+    <string name="splash_text">Pet Patrol</string>
+    <string name="made_possible">Made Possible By: </string>
+    <string name="project_managers">Tim George and David Kirkling</string>
+    <string name="integration">Dan Grimm, Alex Darmos and Ashton Patel</string>
+    <string name="server_administrators">Dionte Smith and Gabe Coury</string>
+    <string name="ui_ux">Carly Butterworth</string>
+    <string name="development">Andrew Peter, Moses Troyer, Junya Inohara, and Matt Stringer</string>
+    <string name="professor">Dr. Alan Rea</string>
 
 
 </resources>
