@@ -15,7 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.util.Date;
+
+import java.util.Calendar;
 
 //this class if for reporting  found pets and lost pets
 public class AddReportFragment extends Fragment{
@@ -35,10 +36,10 @@ public class AddReportFragment extends Fragment{
     private Button mEventEndDateButton;
     private Button mEventStartTimeButton;
     private Button mEventEndTimeButton;
-    private Date mEventStartDate;
-    private Date mEventEndDate;
-    private Date mEventStartTime;
-    private Date mEventEndTime;
+    private Calendar mEventStartDate;
+    private Calendar mEventEndDate;
+    private Calendar mEventStartTime;
+    private Calendar mEventEndTime;
     private Event mEvent = new Event();
     private Pet mPet = new Pet();
     private EditText EventNameEditText;
@@ -67,10 +68,10 @@ public class AddReportFragment extends Fragment{
         PetNameEditText = (EditText) v.findViewById(R.id.editTextPetName);
         PetContactEditText = (EditText) v.findViewById(R.id.editTextPetContact);
         PetDetailsEditText = (EditText) v.findViewById(R.id.editTextPetDetails);
-        mEventStartDate = new Date();
-        mEventEndDate = new Date();
-        mEventStartTime = new Date();
-        mEventEndTime = new Date();
+        mEventStartTime = Calendar.getInstance();
+        mEventEndTime = Calendar.getInstance();
+        mEventStartDate = Calendar.getInstance();
+        mEventEndDate = Calendar.getInstance();
 
         final LinearLayout mLinearLayoutPet = (LinearLayout) v.findViewById(R.id.LinearLayoutPet);
         final LinearLayout mLinearLayoutEvent = (LinearLayout) v.findViewById(R.id.LinearLayoutEvent);
@@ -200,19 +201,33 @@ public class AddReportFragment extends Fragment{
                 }
 
                 mEvent.setEventName(EventNameEditText.getText().toString());
-                Date combinedStart = new Date(mEventStartDate.getYear(), mEventStartDate.getMonth(), mEventStartDate.getDate(), mEventStartTime.getHours(),mEventStartTime.getMinutes());
-                Date combinedEnd = new Date(mEventEndDate.getYear(), mEventEndDate.getMonth(), mEventEndDate.getDate(), mEventEndTime.getHours(),mEventEndTime.getMinutes());
+                Calendar combinedStartC = Calendar.getInstance();
+                combinedStartC.set(Calendar.YEAR, mEventStartDate.get(Calendar.YEAR));
+                combinedStartC.set(Calendar.MONTH, mEventStartDate.get(Calendar.MONTH));
+                combinedStartC.set(Calendar.DAY_OF_MONTH, mEventStartDate.get(Calendar.DAY_OF_MONTH));
+                combinedStartC.set(Calendar.HOUR_OF_DAY, mEventStartTime.get(Calendar.HOUR_OF_DAY));
+                combinedStartC.set(Calendar.MINUTE, mEventStartTime.get(Calendar.MINUTE));
+                combinedStartC.set(Calendar.SECOND, 0);
+                combinedStartC.set(Calendar.MILLISECOND, 0);
+                Calendar combinedEndC = Calendar.getInstance();
+                combinedEndC.set(Calendar.YEAR, mEventEndDate.get(Calendar.YEAR));
+                combinedEndC.set(Calendar.MONTH, mEventEndDate.get(Calendar.MONTH));
+                combinedEndC.set(Calendar.DAY_OF_MONTH, mEventEndDate.get(Calendar.DAY_OF_MONTH));
+                combinedEndC.set(Calendar.HOUR_OF_DAY, mEventEndTime.get(Calendar.HOUR_OF_DAY));
+                combinedEndC.set(Calendar.MINUTE, mEventEndTime.get(Calendar.MINUTE));
+                combinedEndC.set(Calendar.SECOND, 0);
+                combinedEndC.set(Calendar.MILLISECOND, 0);
 
-                if(combinedEnd.getTime() < combinedStart.getTime()){
+                if(combinedEndC.getTimeInMillis() <= combinedStartC.getTimeInMillis()){
                     Toast.makeText(getContext(), "Event End Date & Time must be after the Start Date & Time.", Toast.LENGTH_LONG).show();
                     return;
                 }
-                mEvent.setEventStartDateTime(combinedStart);
-                mEvent.setEventEndDateTime(combinedEnd);
+                mEvent.setEventStartDateTime(combinedStartC);
+                mEvent.setEventEndDateTime(combinedEndC);
                 mEvent.setDetails(EventDetailsEditText.getText().toString());
 
-                Toast.makeText(getContext(), "Event Created: " + mEvent.getEventName() + " will start on " + mEvent.getEventStartDateTime().toString() + " and end on " + mEvent.getEventEndDateTime().toString() + ". Please call " + mEvent.getContactNumber() + " details: " + mEvent.getDetails(),Toast.LENGTH_LONG).show();
-                Log.i(TAG,"Event Created: " + mEvent.getEventName() + " will start on " + mEvent.getEventStartDateTime().toString() + " and end on " + mEvent.getEventEndDateTime().toString() + ". Please call " + mEvent.getContactNumber() + " details: " + mEvent.getDetails());
+                Toast.makeText(getContext(), "Event Created: " + mEvent.getEventName() + " will start on " + mEvent.getEventStartDateTime().getTime().toString() + " and end on " + mEvent.getEventEndDateTime().getTime().toString() + ". Please call " + mEvent.getContactNumber() + " details: " + mEvent.getDetails(),Toast.LENGTH_LONG).show();
+                Log.i(TAG,"Event Created: " + mEvent.getEventName() + " will start on " + mEvent.getEventStartDateTime().getTime().toString() + " and end on " + mEvent.getEventEndDateTime().getTime().toString() + ". Please call " + mEvent.getContactNumber() + " details: " + mEvent.getDetails());
                 // Insert Code for sending Event Data to the server
             }
         });
@@ -229,28 +244,20 @@ public class AddReportFragment extends Fragment{
         }
 
         if (requestCode == REQUEST_START_DATE) {
-            Date date = (Date) data
-                    .getSerializableExtra(DatePickerFragment.EXTRA_DATE);
-            mEventStartDate = date;
+            mEventStartDate = (Calendar) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
 
 
         }
         else if(requestCode == REQUEST_END_DATE) {
-            Date date = (Date) data
-                    .getSerializableExtra(DatePickerFragment.EXTRA_DATE);
-            mEventEndDate = date;
+            mEventEndDate = (Calendar) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
         }
         else if (requestCode == REQUEST_START_TIME) {
-            Date time = (Date) data
-                    .getSerializableExtra(TimePickerFragment.EXTRA_TIME);
-            mEventStartTime = time;
+            mEventStartTime = (Calendar) data.getSerializableExtra(TimePickerFragment.EXTRA_TIME);
 
 
         }
         else if(requestCode == REQUEST_END_TIME) {
-            Date time = (Date) data
-                    .getSerializableExtra(TimePickerFragment.EXTRA_TIME);
-            mEventEndTime = time;
+            mEventEndTime = (Calendar) data.getSerializableExtra(TimePickerFragment.EXTRA_TIME);
         }
     }
 

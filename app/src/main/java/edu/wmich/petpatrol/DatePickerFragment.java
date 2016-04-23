@@ -28,9 +28,9 @@ public class DatePickerFragment extends DialogFragment {
 
     private DatePicker mDatePicker;
 
-    public static DatePickerFragment newInstance(Date date) {
+    public static DatePickerFragment newInstance(Calendar cal) {
         Bundle args = new Bundle();
-        args.putSerializable(ARG_DATE, date);
+        args.putSerializable(ARG_DATE, cal);
 
         DatePickerFragment fragment = new DatePickerFragment();
         fragment.setArguments(args);
@@ -39,13 +39,11 @@ public class DatePickerFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Date date = (Date) getArguments().getSerializable(ARG_DATE);
+        Calendar date = (Calendar) getArguments().getSerializable(ARG_DATE);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int year = date.get(Calendar.YEAR);
+        int month = date.get(Calendar.MONTH);
+        int day = date.get(Calendar.DAY_OF_MONTH);
 
         View v = LayoutInflater.from(getActivity())
                 .inflate(R.layout.dialog_date, null);
@@ -65,19 +63,21 @@ public class DatePickerFragment extends DialogFragment {
                                 int month = mDatePicker.getMonth();
                                 int day = mDatePicker.getDayOfMonth();
                                 Date date = new GregorianCalendar(year, month, day).getTime();
-                                sendResult(Activity.RESULT_OK, date);
+                                Calendar cal = Calendar.getInstance();
+                                cal.set(year, month, day);
+                                sendResult(Activity.RESULT_OK, cal);
                             }
                         })
                 .create();
     }
 
-    private void sendResult(int resultCode, Date date) {
+    private void sendResult(int resultCode, Calendar cal) {
         if (getTargetFragment() == null) {
             return;
         }
 
         Intent intent = new Intent();
-        intent.putExtra(EXTRA_DATE, date);
+        intent.putExtra(EXTRA_DATE, cal);
 
         getTargetFragment()
                 .onActivityResult(getTargetRequestCode(), resultCode, intent);

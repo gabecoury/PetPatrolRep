@@ -2,6 +2,7 @@ package edu.wmich.petpatrol;
 
 import android.location.Location;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -10,16 +11,16 @@ public class Event {
 
     private UUID mEventId;
     private String mEventName;
-    private Date mEventStartDateTime;
-    private Date mEventEndDateTime;
+    private Calendar mEventStartDateTime;
+    private Calendar mEventEndDateTime;
     private Location mLocation;
     private int mContactNumber;
     private String mDetails;
 
     public Event() {
         mEventId = UUID.randomUUID();
-        mEventStartDateTime = new Date();
-        mEventEndDateTime = new Date();
+        mEventStartDateTime = Calendar.getInstance();
+        mEventEndDateTime = Calendar.getInstance();
     }
 
     public UUID getId() {
@@ -38,19 +39,19 @@ public class Event {
         this.mEventName = eventName;
     }
 
-    public Date getEventStartDateTime() {
+    public Calendar getEventStartDateTime() {
         return mEventStartDateTime;
     }
 
-    public void setEventStartDateTime(Date eventStartDateTime) {
+    public void setEventStartDateTime(Calendar eventStartDateTime) {
         this.mEventStartDateTime = eventStartDateTime;
     }
 
-    public Date getEventEndDateTime() {
+    public Calendar getEventEndDateTime() {
         return mEventEndDateTime;
     }
 
-    public void setEventEndDateTime(Date eventEndDateTime) {
+    public void setEventEndDateTime(Calendar eventEndDateTime) {
         this.mEventEndDateTime = eventEndDateTime;
     }
 

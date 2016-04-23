@@ -27,9 +27,9 @@ public class TimePickerFragment extends DialogFragment {
 
     private TimePicker mTimePicker;
 
-    public static TimePickerFragment newInstance(Date time) {
+    public static TimePickerFragment newInstance(Calendar cal) {
         Bundle args = new Bundle();
-        args.putSerializable(ARG_TIME, time);
+        args.putSerializable(ARG_TIME, cal);
 
         TimePickerFragment fragment = new TimePickerFragment();
         fragment.setArguments(args);
@@ -38,12 +38,10 @@ public class TimePickerFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Date time = (Date) getArguments().getSerializable(ARG_TIME);
+        Calendar time = (Calendar) getArguments().getSerializable(ARG_TIME);
 
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(time);
-        int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
+        int hour = time.get(Calendar.HOUR_OF_DAY);
+        int minute = time.get(Calendar.MINUTE);
 
         View v = LayoutInflater.from(getActivity())
                 .inflate(R.layout.dialog_time, null);
@@ -65,19 +63,21 @@ public class TimePickerFragment extends DialogFragment {
                                 cTime.set(Calendar.HOUR_OF_DAY, hour);
                                 cTime.set(Calendar.MINUTE, minute);
                                 Date dTime = cTime.getTime();
-                                sendResult(Activity.RESULT_OK, dTime);
+                                Calendar cal = Calendar.getInstance();
+                                cal.setTime(dTime);
+                                sendResult(Activity.RESULT_OK, cal);
                             }
                         })
                 .create();
     }
 
-    private void sendResult(int resultCode, Date time) {
+    private void sendResult(int resultCode, Calendar cal) {
         if (getTargetFragment() == null) {
             return;
         }
 
         Intent intent = new Intent();
-        intent.putExtra(EXTRA_TIME, time);
+        intent.putExtra(EXTRA_TIME, cal);
 
         getTargetFragment()
                 .onActivityResult(getTargetRequestCode(), resultCode, intent);
