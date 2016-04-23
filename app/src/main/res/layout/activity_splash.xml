@@ -9,6 +9,19 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 tools:context="edu.wmich.petpatrol.SplashActivity"
                 android:background="#595959">
+  
+<!--
+CIS 4700: Mobile Commerce Development
+Spring 2016
+Due date: 04/03/16
+Date completed: 04/03/16
+*************************************
+* Program Explanation
+* This is the xml code for the semester class project. This activity contains the splash activty code in a relative layout with a dark 
+* gray background that's consistent with the rest of the app. There's a text view at the top with the name of the app, and below that are
+* a few little text views with everyone in the class who helped make the creation of this app possible.
+*************************************
+-->
 
     <TextView
         android:layout_width="wrap_content"
