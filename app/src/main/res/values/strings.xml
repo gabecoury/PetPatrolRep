@@ -11,50 +11,134 @@ Date completed: 04/03/16
 *************************************
 -->
 
+    <!-- Name of the app -->
     <string name="app_name">Pet Patrol</string>
 
+    <!-- Settings -->
     <string name="action_settings">Settings</string>
+
+    <!-- Submit a report button -->
     <string name="report_button">Submit an Animal or Event</string>
+
+    <!-- Find an animal button -->
     <string name="find_button">Find an Animal or Event</string>
+
+    <!-- Adopt an animal button -->
     <string name="adopt_button">Adopt An Animal</string>
+
+    <!-- Pet Patrol logo -->
     <string name="imgViewLogo">Pet Patrol Logo</string>
+
+    <!-- Image view logo -->
     <string name="imageViewLogo">Image View Logo</string>
+
+    <!-- TextView for letting the user know to select an option -->
     <string name="selectOption">Please make a selection from one of the options above</string>
+
+    <!-- Location text -->
     <string name="location">Location:</string>
+
+    <!-- Select text -->
     <string name="select">Select</string>
+
+    <!-- Selecting a report type for the radio buttons -->
     <string name="select_report_type">Select a Report Type:</string>
+
+    <!-- Pet radio button -->
     <string name="pet">Pet</string>
+
+    <!-- Event radio button -->
     <string name="event">Event</string>
+
+    <!-- Event name edit text -->
     <string name="event_name">Event Name:</string>
+
+    <!-- Enter a name edit text -->
     <string name="enter_in_name">Enter in Name</string>
+
+    <!-- Select a start date for the date picker -->
     <string name="select_start_date">Select Start Date</string>
+
+    <!-- Select a start time for the time picker -->
     <string name="select_start_time">Select Start Time</string>
+
+    <!-- Select an end time for the time picker -->
     <string name="select_end_time">Select End Time</string>
+
+    <!-- Select an end date for the date picker -->
     <string name="select_end_date">Select End Date</string>
+
+    <!-- Select a location -->
     <string name="select_location">Select Location</string>
+
+    <!-- Enter in a contact number -->
     <string name="contact_number">Contact Number:</string>
+
+    <!-- Any other details the user wants to enter -->
     <string name="details">Details:</string>
+
+    <!-- Submit button -->
     <string name="submit">Submit</string>
+
+    <!-- Status of whether a pet is lost or found -->
     <string name="status">Status:</string>
+
+    <!-- Lost radio button -->
     <string name="lost">Lost</string>
+
+    <!-- Found radio button -->
     <string name="found">Found</string>
+
+    <!-- Current string -->
     <string name="current">Current</string>
+
+    <!-- Custom string -->
     <string name="custom">Custom</string>
+
+    <!-- Type of pet edit text -->
     <string name="type_of_pet">Type of Pet:</string>
+
+    <!-- Pet color edit text -->
     <string name="pet_color_description">Pet Color/Description:</string>
+
+    <!-- Option to enter in a short description of the pet -->
     <string name="enter_in_a_short_description">Enter in a short description</string>
+
+    <!-- Pet's name edit text -->
     <string name="pet_name">Pet Name:</string>
+
+    <!-- Option string -->
     <string name="optional">optional</string>
+
+    <!-- Date picker title -->
     <string name="date_picker_title">Select a Date:</string>
+
+    <!-- Time picker title -->
     <string name="time_picker_title">Select a Time:</string>
-    
+
+
+    <!-- Splash page text -->
     <string name="splash_text">Pet Patrol</string>
+
+    <!-- The app was made possible by TextView -->
     <string name="made_possible">Made Possible By: </string>
+
+    <!-- PM team -->
     <string name="project_managers">Tim George and David Kirkling</string>
+
+    <!-- Integration team -->
     <string name="integration">Dan Grimm, Alex Darmos and Ashton Patel</string>
+
+    <!-- Server Admins teams -->
     <string name="server_administrators">Dionte Smith and Gabe Coury</string>
+
+    <!-- UI/UX team -->
     <string name="ui_ux">Carly Butterworth</string>
+
+    <!-- Dev team -->
     <string name="development">Andrew Peter, Moses Troyer, Junya Inohara, and Matt Stringer</string>
+
+    <!-- Professor who over saw the smooth production of the app -->
     <string name="professor">Dr. Alan Rea</string>
 
 
