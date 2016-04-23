@@ -19,11 +19,12 @@ public class Ushahidi {
     //private static final String CLIENT_ID = "ushahidiui";
     //private static final String CLIENT_SECRET = "35e7f0bca957836d05ca0492211b0ac707671261";
     private static final String CONTENT_TYPE = "application/json";
+    private static final String backend_url = "https://petpatrolback.herokuapp.com";
 
     public static JSONObject getPets(){
         try {
             //build the api string
-            String urlString = Uri.parse("http://testpetpatrol.herokuapp.com/api/v3/posts")
+            String urlString = Uri.parse(backend_url + "/api/v3/posts")
                     .buildUpon()
                     .build().toString();
 
@@ -51,7 +52,7 @@ public class Ushahidi {
     //Every call of the rest API requires an access token. This gets that token.
     private static String getAccessToken(){
         try {
-            String urlString = Uri.parse("https://testpetpatrol.herokuapp.com/oauth/token")
+            String urlString = Uri.parse(backend_url + "/oauth/token")
                     .buildUpon()
                     .build().toString();
 

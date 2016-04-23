@@ -50,7 +50,7 @@ public class FinderFragment extends Fragment implements LocationListener{
         View v = inflater.inflate(R.layout.fragment_find, container, false);
 
         DownloadWebpageTask task = new DownloadWebpageTask();
-        task.execute("http://testpetpatrol.herokuapp.com");
+        task.execute("https://petpatrolback.herokuapp.com/");
 
         //put the map in the page
         map = (MapView) v.findViewById(R.id.map);
