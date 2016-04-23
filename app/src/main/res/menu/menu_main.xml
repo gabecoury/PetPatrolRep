@@ -4,3 +4,14 @@
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>
+
+<!--
+CIS 4700: Mobile Commerce Development
+Spring 2016
+Due date: 04/03/16
+Date completed: 04/03/16
+*************************************
+* Program Explanation
+* This is the xml code for the semester class project. This is the main menu for the app. 
+*************************************
+-->
