@@ -141,5 +141,14 @@ Date completed: 04/03/16
     <!-- Professor who over saw the smooth production of the app -->
     <string name="professor">Dr. Alan Rea</string>
 
+    <string-array name="pet_types">
+        <item>Dog</item>
+        <item>Cat</item>
+        <item>Horse</item>
+        <item>Bird</item>
+        <item>Reptile</item>
+        <item>Rodent</item>
+        <item>Other</item>
+    </string-array>
 
 </resources>

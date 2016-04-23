@@ -9,10 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +53,7 @@ public class AddReportFragment extends Fragment{
     private EditText PetNameEditText;
     private EditText PetContactEditText;
     private EditText PetDetailsEditText;
+    private Spinner PetTypeSpinner;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,24 @@ public class AddReportFragment extends Fragment{
         mEventEndTime = Calendar.getInstance();
         mEventStartDate = Calendar.getInstance();
         mEventEndDate = Calendar.getInstance();
+        PetTypeSpinner = (Spinner) v.findViewById(R.id.spinnerPetType);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.pet_types, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        PetTypeSpinner.setAdapter(adapter);
+
+        PetTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                mPet.setPetType(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
         final LinearLayout mLinearLayoutPet = (LinearLayout) v.findViewById(R.id.LinearLayoutPet);
         final LinearLayout mLinearLayoutEvent = (LinearLayout) v.findViewById(R.id.LinearLayoutEvent);
@@ -172,6 +194,11 @@ public class AddReportFragment extends Fragment{
                     Toast.makeText(getContext(), "Please enter a Pet Color/Description.", Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(mPet.getPetType().equals(""))
+                {
+                    Toast.makeText(getContext(), "Please Select a Pet Type.", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if(!PetContactEditText.getText().toString().equals(""))
                 {
                     mEvent.setContactNumber(Integer.parseInt(PetContactEditText.getText().toString()));
@@ -180,7 +207,7 @@ public class AddReportFragment extends Fragment{
                 mPet.setPetName(PetNameEditText.getText().toString());
                 mPet.setDetails(PetDetailsEditText.getText().toString());
 
-                Toast.makeText(getContext(), "You reported a Lost/Found pet with a description of " + mPet.getPetDescription() + " with a name of " + mPet.getPetName() + ". You may be contacted at " + mPet.getContactNumber() + " and details: " + mPet.getDetails(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "You reported a Lost/Found " + mPet.getPetType() + " with a description of " + mPet.getPetDescription() + " with a name of " + mPet.getPetName() + ". You may be contacted at " + mPet.getContactNumber() + " and details: " + mPet.getDetails(), Toast.LENGTH_LONG).show();
                 Log.i(TAG, "You reported a Lost/Found pet with a description of " + mPet.getPetDescription() + " with a name of " + mPet.getPetName() + ". You may be contacted at " + mPet.getContactNumber() + " and details: " + mPet.getDetails());
                 // Insert Code for sending Pet Data to the server
 

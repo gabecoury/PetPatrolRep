@@ -241,7 +241,8 @@ Date completed: 04/03/16
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:id="@+id/radioGroupPetStatus">
 
                 <RadioButton
                     android:layout_width="wrap_content"
@@ -306,9 +307,10 @@ Date completed: 04/03/16
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner"
+                android:id="@+id/spinnerPetType"
                 android:spinnerMode="dialog"
-                android:background="#FFFFFF"/>
+                android:background="#FFFFFF" />
+
         </LinearLayout>
 
         <LinearLayout
