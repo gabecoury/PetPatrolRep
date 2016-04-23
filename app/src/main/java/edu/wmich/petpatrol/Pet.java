@@ -13,6 +13,7 @@ public class Pet {
     private String mPetName;
     private int mContactNumber;
     private String mDetails;
+    private int mAdoptID;
 
     public Pet() {
         mPetId = UUID.randomUUID();
@@ -72,5 +73,13 @@ public class Pet {
 
     public void setDetails(String details) {
         this.mDetails = details;
+    }
+
+    public int getAdoptID() {
+        return mAdoptID;
+    }
+
+    public void setAdoptID(int adoptID) {
+        this.mAdoptID = adoptID;
     }
 }

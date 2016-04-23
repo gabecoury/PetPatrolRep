@@ -141,5 +141,7 @@ Date completed: 04/03/16
     <!-- Professor who over saw the smooth production of the app -->
     <string name="professor">Dr. Alan Rea</string>
 
+    <!-- user prompt for alternate zip code -->
+    <string name="enter_alternate_zip">Alt. Zip</string>
 
 </resources>
