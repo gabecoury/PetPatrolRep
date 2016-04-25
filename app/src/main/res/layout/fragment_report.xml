@@ -175,12 +175,14 @@ Date completed: 04/03/16
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
+                android:inputType="number"
                 android:ems="10"
                 android:id="@+id/editTextEventContact"
                 android:hint="@string/optional"
                 android:textColor="#FFFFFF"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:digits="1234567890"
+                android:maxLength="10" />
         </LinearLayout>
 
         <TextView
@@ -376,12 +378,14 @@ Date completed: 04/03/16
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
+                android:inputType="number"
                 android:ems="10"
                 android:textColor="#FFFFFF"
                 android:id="@+id/editTextPetContact"
                 android:hint="@string/optional"
-                android:singleLine="true" />
+                android:singleLine="true"
+                android:digits="0123456789"
+                android:maxLength="10" />
         </LinearLayout>
 
         <LinearLayout
