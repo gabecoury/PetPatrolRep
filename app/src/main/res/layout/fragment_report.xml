@@ -92,7 +92,8 @@ Date completed: 04/03/16
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextEventName"
                 android:hint="@string/enter_in_name"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -174,11 +175,14 @@ Date completed: 04/03/16
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
+                android:inputType="number"
                 android:ems="10"
                 android:id="@+id/editTextEventContact"
                 android:hint="@string/optional"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#FFFFFF"
+                android:singleLine="true"
+                android:digits="1234567890"
+                android:maxLength="10" />
         </LinearLayout>
 
         <TextView
@@ -199,7 +203,8 @@ Date completed: 04/03/16
             android:hint="@string/optional"
             android:gravity="top|left"
             android:layout_marginTop="10dp"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#FFFFFF"
+            android:singleLine="true" />
 
         <Button
             android:layout_width="wrap_content"
@@ -303,9 +308,9 @@ Date completed: 04/03/16
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner"
+                android:id="@+id/spinnerPetType"
                 android:spinnerMode="dialog"
-                android:background="#FFFFFF"/>
+                android:background="#FFFFFF" />
         </LinearLayout>
 
         <LinearLayout
@@ -327,7 +332,8 @@ Date completed: 04/03/16
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextPetDescription"
                 android:textColor="#FFFFFF"
-                android:hint="@string/enter_in_a_short_description" />
+                android:hint="@string/enter_in_a_short_description"
+                android:singleLine="true" />
 
         </LinearLayout>
 
@@ -343,14 +349,16 @@ Date completed: 04/03/16
                 android:text="@string/pet_name"
                 android:id="@+id/textViewPetName"
                 android:textSize="20sp"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#FFFFFF"
+                android:singleLine="false" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/editTextPetName"
                 android:hint="@string/optional"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#FFFFFF"
+                android:singleLine="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -370,11 +378,14 @@ Date completed: 04/03/16
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
+                android:inputType="number"
                 android:ems="10"
                 android:textColor="#FFFFFF"
                 android:id="@+id/editTextPetContact"
-                android:hint="@string/optional" />
+                android:hint="@string/optional"
+                android:singleLine="true"
+                android:digits="0123456789"
+                android:maxLength="10" />
         </LinearLayout>
 
         <LinearLayout
@@ -399,7 +410,8 @@ Date completed: 04/03/16
                 android:scrollIndicators="right"
                 android:hint="@string/optional"
                 android:gravity="top|left"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#FFFFFF"
+                android:singleLine="true" />
         </LinearLayout>
 
         <Button

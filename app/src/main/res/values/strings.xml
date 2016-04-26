@@ -144,4 +144,14 @@ Date completed: 04/03/16
     <!-- user prompt for alternate zip code -->
     <string name="enter_alternate_zip">Alt. Zip</string>
 
+    <string-array name="pet_types">
+        <item>Dog</item>
+        <item>Cat</item>
+        <item>Horse</item>
+        <item>Bird</item>
+        <item>Reptile</item>
+        <item>Rodent</item>
+        <item>Other</item>
+    </string-array>
+
 </resources>
