@@ -1,7 +1,20 @@
 package edu.wmich.petpatrol;
 
+/*
+*************************************
+* Pet Patrol
+* CIS 4700: Mobile Commerce Development
+* Spring 2016
+*************************************
+* This controls the Ushahidi API.
+* Asks the server for an
+* authorization key for every call to
+* the API. Builds the necessary JSON
+* for the calls.
+*************************************
+*/
+
 import android.net.Uri;
-import android.util.Base64;
 import android.util.Log;
 
 import org.json.JSONObject;
@@ -16,8 +29,8 @@ import java.net.URL;
 public class Ushahidi {
 
     private static final String TAG = "UshahidiAPI";
-    //private static final String CLIENT_ID = "ushahidiui";
-    //private static final String CLIENT_SECRET = "35e7f0bca957836d05ca0492211b0ac707671261";
+    private static final String CLIENT_ID = "ushahidiui";
+    private static final String CLIENT_SECRET = "35e7f0bca957836d05ca0492211b0ac707671261";
     private static final String CONTENT_TYPE = "application/json";
     private static final String backend_url = "https://petpatrolback.herokuapp.com";
 
@@ -228,8 +241,8 @@ public class Ushahidi {
 
             OutputStreamWriter wr= new OutputStreamWriter(connection.getOutputStream());
             wr.write("{\"grant_type\": \"client_credentials\"," +
-                    "\"client_id\": \"ushahidiui\"," +
-                    "\"client_secret\": \"35e7f0bca957836d05ca0492211b0ac707671261\"," +
+                    "\"client_id\": \"" + CLIENT_ID + "\"," +
+                    "\"client_secret\": \"" + CLIENT_SECRET + "\"," +
                     "\"scope\": \"posts\"}");
             wr.close();
 
@@ -264,7 +277,7 @@ public class Ushahidi {
         return null;
     }
 
-    //build a new connection with a url, but using the specified api acess token
+    //build a new connection with a url, but using the specified api access token
     private static HttpURLConnection buildConnection(String urlString, String access_token){
         try {
             URL url = new URL(urlString);

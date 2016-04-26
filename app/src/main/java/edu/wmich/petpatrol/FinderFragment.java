@@ -1,5 +1,18 @@
 package edu.wmich.petpatrol;
 
+/*
+*************************************
+* Pet Patrol
+* CIS 4700: Mobile Commerce Development
+* Spring 2016
+*************************************
+* This fragment controls the map on
+* the app, and handles the
+* interaction when the data is
+* returned from the API.
+*************************************
+*/
+
 import android.os.AsyncTask;
 import android.content.Context;
 import android.location.Criteria;
@@ -14,7 +27,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.Marker;
@@ -31,8 +43,6 @@ import java.util.List;
 
 //this class is for maps with lost pets and reported pets pinned on them.
 public class FinderFragment extends Fragment implements LocationListener{
-
-    final private int REQUEST_CODE_ASK_MULTIPLE_PERMISSIONS = 125;
 
     double latit;
     double longi;
@@ -59,14 +69,19 @@ public class FinderFragment extends Fragment implements LocationListener{
         //set up options
         map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
+
         try {
-            // get location
+
+            // get the user's current location
             LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
             Criteria cri = new Criteria();
             cri.setAccuracy(Criteria.ACCURACY_COARSE);
+
             String bestprov = locationManager.getBestProvider(cri, true);
             Location loc = locationManager.getLastKnownLocation(bestprov);
+
             if (loc != null) {
                 latit = loc.getLatitude();
                 longi = loc.getLongitude();
@@ -76,16 +91,17 @@ public class FinderFragment extends Fragment implements LocationListener{
                 locationNullFlag = true;
             }
 
+            //get the pets seperately from the main thread
             FetchItemsTask ushahidi = new FetchItemsTask(this);
             ushahidi.execute(ushahidi.GET_PETS);
 
-
+            //set the zoom level on the map
             IMapController mapController = map.getController();
             mapController.setZoom(13);
 
+            //set the point that the map focuses
             GeoPoint startPoint = new GeoPoint(latit, longi);
             mapController.setCenter(startPoint);
-
 
         } catch (SecurityException se) {
             Log.d("Security Exception", "GPS access not enabled");
@@ -100,15 +116,7 @@ public class FinderFragment extends Fragment implements LocationListener{
     public void updatePosts(JSONObject posts) {
         Events events = Events.get(getContext());
 
-        try {
-
-            Log.d("Finder Fragment", posts.getInt("count") + "");
-
-        } catch (JSONException e){
-            e.printStackTrace();
-        }
-
-        //Here's where we would get the list of lost pets. IF THE API WORKED
+        //Sample data of the posts
         String[] names = {"Cute Dog", "Ugly Dog", "Short Dog", "The Fattest Cat I've Ever Seen",
                 "Kitty"};
         String[] details = {"OMG CUTIE DOG", "The face that only the assumed owner could love",
@@ -131,19 +139,23 @@ public class FinderFragment extends Fragment implements LocationListener{
             events.addEvent(newEvent);
         }
 
+        //initialize the list of events
         List<Event> listEvents = events.getEvents();
 
+        //for each event, place down a marker
         for (Event event : listEvents){
             Location eventLocation = event.getLocation();
 
             Marker eventMarker = new Marker(map);
 
+            //set the configuration for the marker
             eventMarker.setPosition(new GeoPoint(eventLocation.getLatitude(),
                     eventLocation.getLongitude()));
             eventMarker.setTitle(event.getEventName());
             eventMarker.setSnippet(event.getDetails());
             eventMarker.setSubDescription(event.getContactNumber() + "");
 
+            //add it to the map
             map.getOverlays().add(eventMarker);
 
             Log.d("Location", "Adding Location with Lat: " + eventLocation.getLatitude()
@@ -152,6 +164,7 @@ public class FinderFragment extends Fragment implements LocationListener{
 
     }
 
+    //download the webpage in the background
     private class DownloadWebpageTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
@@ -195,25 +208,32 @@ public class FinderFragment extends Fragment implements LocationListener{
         }
     }
 
-    @Override
+    @Override //run when the location changes
     public void onLocationChanged(Location location) {
         latit = (location.getLatitude());
         longi = (location.getLongitude());
+
         if (locationNullFlag) {
             latit = (location.getLatitude());
             longi = (location.getLongitude());
             Log.d("Current Location", "Lat: " + latit + ", Long: " + longi);
+
             IMapController mapController = map.getController();
             mapController.setZoom(13);
+
             GeoPoint startPoint = new GeoPoint(latit, longi);
             Marker startMarker = new Marker(map);
+
             startMarker.setPosition(startPoint);
             startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
             mapController.setCenter(startPoint);
+
             startMarker.setTitle("Current Location");
             startMarker.setSnippet("Coordinates: ");
             startMarker.setSubDescription("Lat: " + startPoint.getLatitude() + ", Long: " + startPoint.getLongitude());
+
             map.getOverlays().add(startMarker);
+
             locationNullFlag = false;
         }
 

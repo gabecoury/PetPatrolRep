@@ -1,8 +1,18 @@
 package edu.wmich.petpatrol;
 
+/*
+*************************************
+* Pet Patrol
+* CIS 4700: Mobile Commerce Development
+* Spring 2016
+*************************************
+* Pet stores the information for the
+* Pets used in the app.
+*************************************
+*/
+
 import java.util.UUID;
 
-//object for each lost or found pet. individual object
 public class Pet {
 
     private UUID mPetId;

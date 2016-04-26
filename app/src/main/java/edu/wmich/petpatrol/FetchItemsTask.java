@@ -1,19 +1,36 @@
 package edu.wmich.petpatrol;
 
+/*
+*************************************
+* Pet Patrol
+* CIS 4700: Mobile Commerce Development
+* Spring 2016
+*************************************
+* This background task uses the apis
+* to get data. This is done in an
+* asynctask, as network code can not
+* run in the main thread. Options and
+* parents are passed so the
+* information can be passed to the
+* correct methods.
+*************************************
+*/
+
 import android.os.AsyncTask;
 
 import org.json.JSONObject;
 
 public class FetchItemsTask extends AsyncTask<String,Void,Void> {
 
+    //available options for api call
     final String GET_PETS = "GET_PETS";
     final String GET_PETFINDER_PETS = "GET_PETFINDER_PETS";
     final String POST_PET = "POST_PET";
     final String POST_EVENT = "POST_EVENT";
 
+    //used to call methods in fragment
     FinderFragment finderFragment;
     AdoptFragment adoptFragment;
-    AddReportFragment addReportFragment;
 
     JSONObject pets = null;
 
@@ -22,6 +39,7 @@ public class FetchItemsTask extends AsyncTask<String,Void,Void> {
     Pet pet;
     Event event;
 
+    //init
     public FetchItemsTask(FinderFragment finderFragment){
         this.finderFragment = finderFragment;
     }

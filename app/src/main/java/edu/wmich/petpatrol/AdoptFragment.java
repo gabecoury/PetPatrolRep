@@ -1,11 +1,25 @@
 package edu.wmich.petpatrol;
 
-import android.app.Dialog;
+/*
+*************************************
+* Pet Patrol
+* CIS 4700: Mobile Commerce Development
+* Spring 2016
+*************************************
+* This class uses the PetFinder api
+* to display a list of pets that are
+* available for adoption around the
+* user. The user has the option to
+* enter in an alternate zip code and
+* view the options there. A
+* RecyclerView is used to display the
+* pets.
+*************************************
+*/
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -26,30 +40,22 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.osmdroid.api.IMapController;
-import org.osmdroid.bonuspack.overlays.Marker;
-import org.osmdroid.util.GeoPoint;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-//fragment to access the petfinder api.. with recyclerview for the information
 public class AdoptFragment extends Fragment implements LocationListener {
 
     private RecyclerView locationRecyclerView;
     private PetAdapter adapter;
     private List petList;
-    private SQLiteDatabase database;
     private String zipCode;
 
     double latit;
@@ -60,8 +66,10 @@ public class AdoptFragment extends Fragment implements LocationListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //initialize the list of pets
         petList = new ArrayList();
 
+        //do you want a menu? that's how you get a menu
         setHasOptionsMenu(true);
     }
 
@@ -76,34 +84,41 @@ public class AdoptFragment extends Fragment implements LocationListener {
         locationRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         try {
-            // get location
+            //get the user's current location
             LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
+            //no need to be super specific
             Criteria cri = new Criteria();
             cri.setAccuracy(Criteria.ACCURACY_COARSE);
+
             String bestprov = locationManager.getBestProvider(cri, true);
             Location loc = locationManager.getLastKnownLocation(bestprov);
+
             if (loc != null) {
                 latit = loc.getLatitude();
                 longi = loc.getLongitude();
             } else {
+                //could not find the location
                 latit = 0;
                 longi = 0;
                 locationNullFlag = true;
             }
 
-        } catch (SecurityException se) {
+        } catch (SecurityException se) { //Please let us find where you are so we can show you pets
             Log.d("Security Exception", "GPS access not enabled");
-            Toast.makeText(getParentFragment().getContext(), "Please allow access to Location.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getParentFragment().getContext(), "Please allow access to Location.",
+                    Toast.LENGTH_LONG).show();
             latit = 0;
             longi = 0;
         }
 
         Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
-        String postalCode = "49008";
-        try {
+        String postalCode = "49008"; //default zip code in case location cannot be found
+
+        try { //need to find the zip code using the given location
             Log.d("location", "lat " + latit + " long " + longi);
-            if (geocoder.isPresent()){
+            if (geocoder.isPresent()){ //make sure we have geocoder ready
                 List<Address> addresses = geocoder.getFromLocation(latit, longi, 1);
 
                 Log.d("geocoder address", addresses.toString());
@@ -115,6 +130,7 @@ public class AdoptFragment extends Fragment implements LocationListener {
             e.printStackTrace();
         }
 
+        //Do the background task to get the list of pets, using the postal code
         FetchItemsTask petfinder = new FetchItemsTask(this);
         petfinder.execute(petfinder.GET_PETFINDER_PETS, postalCode);
 
@@ -133,14 +149,15 @@ public class AdoptFragment extends Fragment implements LocationListener {
 
         switch (item.getItemId()) {
             case R.id.action_alternate_zip:
-                Log.d("zip", "zip");
 
+                //create a dialogue
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Enter Zip Code");
 
                 // Set up the input
                 final EditText input = new EditText(getActivity());
 
+                //make it so it only accepts numbers
                 input.setInputType(InputType.TYPE_CLASS_NUMBER);
                 builder.setView(input);
 
@@ -149,18 +166,18 @@ public class AdoptFragment extends Fragment implements LocationListener {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         zipCode = input.getText().toString();
-                        runFromDialog();
+                        runFromDialog(); //get the zipcode and then execute the background task
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        dialog.cancel(); // get this dialog out of my face
                     }
                 });
 
+                //pop this up
                 builder.create();
-
                 builder.show();
 
                 return true;
@@ -170,32 +187,42 @@ public class AdoptFragment extends Fragment implements LocationListener {
 
     }
 
+    //runs the background task to get the available pets
     public void runFromDialog(){
         FetchItemsTask petfinder = new FetchItemsTask(this);
         petfinder.execute(petfinder.GET_PETFINDER_PETS, zipCode);
     }
 
+    //update the pets that are displayed
     public void updatePosts(JSONObject pets){
 
+        //initialize the list of pets
         petList = new ArrayList();
 
         try {
 
+            //get the actual pets from the return
+            //while I understand this from a standpoint of making an api, this is very buried
             JSONArray petListJSON = pets.getJSONObject("petfinder").getJSONObject("pets").getJSONArray("pet");
 
+            //put in each pet
             for(int i = 0; i < petListJSON.length(); i++){
                 JSONObject pet = petListJSON.getJSONObject(i);
 
-                //Log.d("PET", pet.getJSONObject("name").getString("$t"));
+                //start building the pet object to use
                 Pet newPet = new Pet();
                 newPet.setPetName(pet.getJSONObject("name").getString("$t"));
+
+                //adopt id used for the webpage
                 newPet.setAdoptID(Integer.parseInt(pet.getJSONObject("id").getString("$t")));
-                //newPet.setDetails(pet.getJSONObject("description").getString("$t"));
+
                 String breedString;
-                try {
+                try { //the pet can have multiple breeds, so this brings them all together
+
                     JSONArray breed = pet.getJSONObject("breeds").getJSONArray("breed");
                     breedString = pet.getJSONObject("animal").getString("$t") + " - ";
 
+                    //combine them
                     for (int breedPlace = 0; breedPlace < breed.length(); breedPlace++) {
                         breedString += breed.getJSONObject(breedPlace).getString("$t");
 
@@ -207,11 +234,11 @@ public class AdoptFragment extends Fragment implements LocationListener {
                     JSONObject breed = pet.getJSONObject("breeds").getJSONObject("breed");
                     breedString = pet.getJSONObject("animal").getString("$t") + " - " +
                             breed.getString("$t");
-
                 }
 
                 newPet.setPetType(breedString);
 
+                //add to the list
                 petList.add(newPet);
             }
 
@@ -221,8 +248,9 @@ public class AdoptFragment extends Fragment implements LocationListener {
             e.printStackTrace();
         }
 
+        //if there are no pets available, or the zip code entered is wrong
         if(petList.size() == 0){
-            Pet noPet = new Pet();
+            Pet noPet = new Pet(); //dummy pet display
             noPet.setPetName("No Pets Found.");
             noPet.setAdoptID(-1);
 
@@ -231,13 +259,9 @@ public class AdoptFragment extends Fragment implements LocationListener {
 
         locationRecyclerView.invalidate();
 
-        //if(adapter == null) {
-            adapter = new PetAdapter(petList);
-            locationRecyclerView.setAdapter(adapter);
-        //} else {
-        //    adapter.notifyDataSetChanged();
-        //}
-
+        //put in the new list of pets
+        adapter = new PetAdapter(petList);
+        locationRecyclerView.setAdapter(adapter);
     }
 
     //this viewholder will store references to the displayed variables
@@ -265,11 +289,12 @@ public class AdoptFragment extends Fragment implements LocationListener {
         }
 
         @Override
-        public void onClick(View v) {
-            if(pet.getAdoptID() == -1){
+        public void onClick(View v) { //when clicking on a pet, open the pet's adoption page
+            if(pet.getAdoptID() == -1){ //for the dummy pet
                 return;
             }
 
+            //open the page
             String url = "https://m.petfinder.com/petdetail/" + pet.getAdoptID();
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -294,13 +319,13 @@ public class AdoptFragment extends Fragment implements LocationListener {
             return new PetHolder(view);
         }
 
-        @Override //set the text on the tweet when it is bound
+        @Override //set the text on the pet when it is bound
         public void onBindViewHolder(PetHolder holder, int position) {
             Pet pet = pets.get(position);
             holder.bindPet(pet);
         }
 
-        @Override //get how many tweets there are
+        @Override //get how many pets there are
         public int getItemCount() {
             return pets.size();
         }

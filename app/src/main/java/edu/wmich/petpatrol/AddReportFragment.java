@@ -263,8 +263,6 @@ public class AddReportFragment extends Fragment{
             }
         });
 
-
-
         return v;
     }
 
