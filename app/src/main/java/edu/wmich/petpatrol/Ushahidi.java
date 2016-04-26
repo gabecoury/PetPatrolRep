@@ -49,6 +49,167 @@ public class Ushahidi {
         return null;
     }
 
+    //post a pet to the server
+    //At the moment, this will return with 204 NO CONTENT
+    //This is fine, this is an issue with Ushahidi not acepting public posts. This should
+    //work with minimal effort if that becomes fixed.
+    public static boolean submitPet(Pet pet){
+        try {
+            //build the api string
+            String urlString = Uri.parse(backend_url + "/api/v3/posts")
+                    .buildUpon()
+                    .build().toString();
+
+            //get a new connection from the server
+            HttpURLConnection connection = buildConnection(urlString, getAccessToken());
+
+            //set the properties of the rest api call
+            connection.setDoOutput(true);
+            connection.setRequestMethod("POST");
+
+            String petTitle = "Lost Pet";
+            if(pet.isFound()){
+                petTitle = "Found Pet";
+            }
+
+            String petContent = "";
+
+            if(pet.getPetName().length() > 0){
+                petContent += pet.getPetName() + " - ";
+            }
+            petContent += pet.getPetType() + " - " +
+                    pet.getPetDescription();
+
+            if(pet.getDetails().length() > 0){
+                petContent += " - " + pet.getDetails();
+            }
+
+            Log.d("number", pet.getContactNumber() + "");
+
+            if(pet.getContactNumber() != 0){
+                petContent += " Contact at " + pet.getContactNumber();
+            }
+
+            Log.d("PetContent", petContent);
+
+            OutputStreamWriter wr= new OutputStreamWriter(connection.getOutputStream());
+            wr.write(
+
+                    "{" +
+                        "\"title\":\"" + petTitle + "\"," +
+                        "\"content\":\"" + petContent + "\"," +
+                        "\"locale\":\"en_US\"," +
+                        "\"status\":\"draft\"," +
+                        "\"values\":{" +
+                            "\"location_default\":[" +
+                                "{" +
+                                    "\"lat\":" + "0" + "," + // This will need to updated when pets can store location info
+                                    "\"lon\":" + "0" +
+                                "}" +
+                            "]" +
+                        "}," +
+                        "\"completed_stages\":[]," +
+                        "\"allowed_privileges\":[" +
+                            "\"read\",\"create\",\"search\"" +
+                        "]," +
+                        "\"form\":{" +
+                            "\"id\":2" +
+                        "}" +
+                    "}"
+
+
+            );
+            wr.close();
+
+            //get the result
+            String resultString = new String(getBytes(connection));
+
+            Log.d("PostPet", resultString);
+
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to post pet", e);
+            return false;
+        }
+
+
+        return true;
+    }
+
+    //post an event to the server
+    //At the moment, this will return with 204 NO CONTENT
+    //This is fine, this is an issue with Ushahidi not acepting public posts. This should
+    //work with minimal effort if that becomes fixed.
+    public static boolean submitEvent(Event event){
+        try {
+            //build the api string
+            String urlString = Uri.parse(backend_url + "/api/v3/posts")
+                    .buildUpon()
+                    .build().toString();
+
+            //get a new connection from the server
+            HttpURLConnection connection = buildConnection(urlString, getAccessToken());
+
+            //set the properties of the rest api call
+            connection.setDoOutput(true);
+            connection.setRequestMethod("POST");
+
+            String eventContent = "Starts on " + event.getEventStartDateTime().getTime().toString() +
+                    " and ends on " + event.getEventEndDateTime().getTime().toString() + ". ";
+
+
+            if(event.getDetails().length() > 0){
+                eventContent += event.getDetails();
+            }
+
+            if(event.getContactNumber() != 0){
+               eventContent += " Contact at " + event.getContactNumber() + ".";
+            }
+
+
+            Log.d("EventContent", eventContent);
+
+            OutputStreamWriter wr= new OutputStreamWriter(connection.getOutputStream());
+            wr.write(
+                "{" +
+                    "\"title\":\"" + event.getEventName() + "\"," +
+                    "\"content\":\"" + " " + "\"," +
+                    "\"locale\":\"en_US\"," +
+                    "\"status\":\"draft\"," +
+                    "\"values\":{" +
+                        "\"location_default\":[" +
+                            "{" +
+                                "\"lat\":" + "0" + "," + // This will need to updated when pets can store location info
+                                "\"lon\":" + "0" +
+                            "}" +
+                        "]" +
+                    "}," +
+                    "\"completed_stages\":[]," +
+                    "\"allowed_privileges\":[" +
+                        "\"read\",\"create\",\"search\"" +
+                    "]," +
+                    "\"form\":{" +
+                        "\"id\":2" +
+                    "}" +
+                "}"
+
+
+            );
+            wr.close();
+
+            //get the result
+            String resultString = new String(getBytes(connection));
+
+            Log.d("PostPet", resultString);
+
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to post pet", e);
+            return false;
+        }
+
+
+        return true;
+    }
+
     //Every call of the rest API requires an access token. This gets that token.
     private static String getAccessToken(){
         try {

@@ -201,7 +201,7 @@ public class AddReportFragment extends Fragment{
                 }
                 if(!PetContactEditText.getText().toString().equals(""))
                 {
-                    mEvent.setContactNumber(Integer.parseInt(PetContactEditText.getText().toString()));
+                    mPet.setContactNumber(Integer.parseInt(PetContactEditText.getText().toString()));
                 }
                 mPet.setPetDescription(PetDescriptionEditText.getText().toString());
                 mPet.setPetName(PetNameEditText.getText().toString());
@@ -209,7 +209,9 @@ public class AddReportFragment extends Fragment{
 
                 Toast.makeText(getContext(), "You reported a Lost/Found " + mPet.getPetType() + " with a description of " + mPet.getPetDescription() + " with a name of " + mPet.getPetName() + ". You may be contacted at " + mPet.getContactNumber() + " and details: " + mPet.getDetails(), Toast.LENGTH_LONG).show();
                 Log.i(TAG, "You reported a Lost/Found pet with a description of " + mPet.getPetDescription() + " with a name of " + mPet.getPetName() + ". You may be contacted at " + mPet.getContactNumber() + " and details: " + mPet.getDetails());
-                // Insert Code for sending Pet Data to the server
+
+                FetchItemsTask ushahidi = new FetchItemsTask(mPet);
+                ushahidi.execute(ushahidi.POST_PET);
 
             }
         });
@@ -255,7 +257,9 @@ public class AddReportFragment extends Fragment{
 
                 Toast.makeText(getContext(), "Event Created: " + mEvent.getEventName() + " will start on " + mEvent.getEventStartDateTime().getTime().toString() + " and end on " + mEvent.getEventEndDateTime().getTime().toString() + ". Please call " + mEvent.getContactNumber() + " details: " + mEvent.getDetails(),Toast.LENGTH_LONG).show();
                 Log.i(TAG,"Event Created: " + mEvent.getEventName() + " will start on " + mEvent.getEventStartDateTime().getTime().toString() + " and end on " + mEvent.getEventEndDateTime().getTime().toString() + ". Please call " + mEvent.getContactNumber() + " details: " + mEvent.getDetails());
-                // Insert Code for sending Event Data to the server
+
+                FetchItemsTask ushahidi = new FetchItemsTask(mEvent);
+                ushahidi.execute(ushahidi.POST_EVENT);
             }
         });
 
