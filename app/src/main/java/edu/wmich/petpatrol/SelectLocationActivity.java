@@ -8,8 +8,12 @@ import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.Marker;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -18,9 +22,13 @@ import org.osmdroid.views.MapView;
 
 public class SelectLocationActivity extends AppCompatActivity implements LocationListener {
 
+
+
     MapView map;
     double latit;
     double longi;
+    double centerlat;
+    double centerlng;
     boolean locationNullFlag = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,18 @@ public class SelectLocationActivity extends AppCompatActivity implements Locatio
         map.setBuiltInZoomControls(true);
         map.setMultiTouchControls(true);
 
+        // It is pretty god dang hard to actually do a "touch to select location" thing in OSMdroid.
+        // I mean seriously why is it so hard to do it any other way
+        final Button btn = (Button) findViewById(R.id.BTChooseLocation);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IGeoPoint g = map.getMapCenter();
+                centerlat = g.getLatitude();
+                centerlng = g.getLongitude();
+                Toast.makeText(SelectLocationActivity.this, "Centerlat: " + centerlat + " Centerlng: " + centerlng, Toast.LENGTH_LONG).show();
+            }
+        });
         try {
 
             // get the user's current location
