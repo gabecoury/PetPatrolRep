@@ -1,5 +1,15 @@
 package edu.wmich.petpatrol;
-//main activity that holds all the fragments.
+
+/*
+*************************************
+* Pet Patrol
+* CIS 4700: Mobile Commerce Development
+* Spring 2016
+*************************************
+* This Activity hosts every fragment
+*************************************
+*/
+
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
@@ -11,7 +21,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-//Moses was here 2016
 
 public class MainActivity extends SingleFragmentActivity {
 

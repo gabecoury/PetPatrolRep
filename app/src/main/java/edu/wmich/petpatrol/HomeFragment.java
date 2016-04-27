@@ -1,5 +1,15 @@
 package edu.wmich.petpatrol;
-//home page
+
+/*
+*************************************
+* Pet Patrol
+* CIS 4700: Mobile Commerce Development
+* Spring 2016
+*************************************
+* This fragment displays the home screen
+* that allows the user to pick a function.
+*************************************
+*/
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

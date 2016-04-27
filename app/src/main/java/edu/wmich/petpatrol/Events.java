@@ -1,12 +1,22 @@
 package edu.wmich.petpatrol;
 
+/*
+*************************************
+* Pet Patrol
+* CIS 4700: Mobile Commerce Development
+* Spring 2016
+*************************************
+* This is a singleton for holding a list
+* of Event objects and manipulating them.
+*************************************
+*/
+
 import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-//singleton for all of the pet event objects.
 public class Events {
 
     private static Events sEvents;

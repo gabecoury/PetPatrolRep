@@ -1,5 +1,16 @@
 package edu.wmich.petpatrol;
 
+/*
+*************************************
+* Pet Patrol
+* CIS 4700: Mobile Commerce Development
+* Spring 2016
+*************************************
+* This opens a TimePicker Dialog that
+* allows the user to select a time.
+*************************************
+*/
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -14,20 +25,17 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 import java.util.Date;
 
-/**
- * Created by Andrew on 4/17/2016.
- */
-
 public class TimePickerFragment extends DialogFragment {
 
     public static final String EXTRA_TIME =
-            "edu.wmich.petpatrol.myapplication.time";
+            "edu.wmich.petpatrol.time";
 
     private static final String ARG_TIME = "time";
 
     private TimePicker mTimePicker;
 
     public static TimePickerFragment newInstance(Calendar cal) {
+            /* Creates a new TimePicker Fragment with the current/last set time passed in as an argument */
         Bundle args = new Bundle();
         args.putSerializable(ARG_TIME, cal);
 
@@ -38,19 +46,22 @@ public class TimePickerFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+            /* Stores the argument as time */
         Calendar time = (Calendar) getArguments().getSerializable(ARG_TIME);
 
-        int hour = time.get(Calendar.HOUR_OF_DAY);
-        int minute = time.get(Calendar.MINUTE);
+        int hour = time.get(Calendar.HOUR_OF_DAY);  /* retrieves hours from time */
+        int minute = time.get(Calendar.MINUTE); /* Retrieves minutes from time */
 
         View v = LayoutInflater.from(getActivity())
-                .inflate(R.layout.dialog_time, null);
+                .inflate(R.layout.dialog_time, null);   /* Inflates the timepicker layout */
 
         mTimePicker = (TimePicker) v.findViewById(R.id.dialog_time_time_picker);
-        mTimePicker.setCurrentHour(hour);
-        mTimePicker.setCurrentMinute(minute);
+        mTimePicker.setCurrentHour(hour);   /* Sets the timepicker hour hand */
+        mTimePicker.setCurrentMinute(minute);   /* Sets the timepicker minute hand */
+            /* The above deprecated functions were used in order to maintain backwards
+            compatibility with the minimum API level */
 
-        return new AlertDialog.Builder(getActivity())
+        return new AlertDialog.Builder(getActivity())   /* Gets the time the user selected and sends it back to the calling fragment */
                 .setView(v)
                 .setTitle(R.string.time_picker_title)
                 .setPositiveButton(android.R.string.ok,
@@ -72,6 +83,7 @@ public class TimePickerFragment extends DialogFragment {
     }
 
     private void sendResult(int resultCode, Calendar cal) {
+        /* Sends the time selected back to the function that requested the timepicker */
         if (getTargetFragment() == null) {
             return;
         }

@@ -1,12 +1,22 @@
 package edu.wmich.petpatrol;
 
+/*
+*************************************
+* Pet Patrol
+* CIS 4700: Mobile Commerce Development
+* Spring 2016
+*************************************
+* This is a singleton for holding a list
+* of Pet objects and manipulating them.
+*************************************
+*/
+
 import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-//singleton that stores all the lost or found pets.so basically this is collection of all of the events.
 public class Pets {
     private static Pets sPets;
 

@@ -1,5 +1,17 @@
 package edu.wmich.petpatrol;
 
+/*
+*************************************
+* Pet Patrol
+* CIS 4700: Mobile Commerce Development
+* Spring 2016
+*************************************
+* This opens a DatePicker Dialog that
+* allows the user to select a date.
+*************************************
+*/
+
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -14,10 +26,6 @@ import android.widget.DatePicker;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-/**
- * Created by Andrew on 4/17/2016.
- */
 
 public class DatePickerFragment extends DialogFragment {
 
