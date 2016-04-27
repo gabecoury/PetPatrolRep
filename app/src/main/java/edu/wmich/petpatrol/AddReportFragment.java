@@ -247,6 +247,8 @@ public class AddReportFragment extends Fragment{
 
                 Pets.get(getActivity()).setTemplat(0);
                 Pets.get(getActivity()).setTemplng(0);
+                getFragmentManager().popBackStack();
+
             }
         });
 
@@ -297,6 +299,8 @@ public class AddReportFragment extends Fragment{
 
                 Pets.get(getActivity()).setTemplat(0);
                 Pets.get(getActivity()).setTemplng(0);
+                getFragmentManager().popBackStack();
+
             }
         });
 
