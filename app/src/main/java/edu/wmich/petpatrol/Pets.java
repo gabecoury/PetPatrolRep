@@ -9,6 +9,8 @@ import java.util.UUID;
 //singleton that stores all the lost or found pets.so basically this is collection of all of the events.
 public class Pets {
     private static Pets sPets;
+
+    // dead dove do not eat
     private static double templng = 0;
     private static double templat= 0;
 
