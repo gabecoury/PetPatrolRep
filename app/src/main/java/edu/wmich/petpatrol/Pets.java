@@ -42,7 +42,7 @@ public class Pets {
 
     private ArrayList<Pet> mPets;
 
-    public static Pets get(Context context) {
+    public static Pets get(Context context) {   /* Pets singleton */
         if (sPets == null) {
             sPets = new Pets(context);
         }
@@ -53,15 +53,15 @@ public class Pets {
         mPets = new ArrayList<>();
     }
 
-    public void addPet(Pet p){
+    public void addPet(Pet p){  /* Add a pet to the array */
         mPets.add(p);
     }
 
-    public List<Pet> getPets() {
+    public List<Pet> getPets() {    /* Get the Pet array */
         return mPets;
     }
 
-    public Pet getPet(UUID id) {
+    public Pet getPet(UUID id) {    /* Get a single pet object specified by ID */
         for(Pet pet: mPets) {
             if(pet.getId().equals(id)) {
                 return pet;

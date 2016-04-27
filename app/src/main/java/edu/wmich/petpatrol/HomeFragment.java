@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
 
         mButtonReport.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {    /* Opens AddReport Fragment when The Report button is clicked */
                 Fragment fragment = new AddReportFragment();
 
                 FragmentManager fm = getFragmentManager();
@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment {
 
         mButtonFind.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {    /* Opens the Finder Fragment when The Find button is clicked */
                 Fragment fragment = new FinderFragment();
 
                 FragmentManager fm = getFragmentManager();
@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
 
         mButtonAdopt.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) {    /* Opens Adopt Fragment when The Adopt button is clicked */
                 Fragment fragment = new AdoptFragment();
 
                 FragmentManager fm = getFragmentManager();

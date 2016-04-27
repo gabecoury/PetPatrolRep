@@ -36,7 +36,7 @@ public class DatePickerFragment extends DialogFragment {
 
     private DatePicker mDatePicker;
 
-    public static DatePickerFragment newInstance(Calendar cal) {
+    public static DatePickerFragment newInstance(Calendar cal) { /* Creates DatePicker Fragment */
         Bundle args = new Bundle();
         args.putSerializable(ARG_DATE, cal);
 
@@ -46,7 +46,7 @@ public class DatePickerFragment extends DialogFragment {
     }
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public Dialog onCreateDialog(Bundle savedInstanceState) {   /* Creates DatePicker Dialog */
         Calendar date = (Calendar) getArguments().getSerializable(ARG_DATE);
 
         int year = date.get(Calendar.YEAR);
@@ -61,6 +61,7 @@ public class DatePickerFragment extends DialogFragment {
         mDatePicker.setMinDate(Calendar.getInstance().getTimeInMillis());
 
         return new AlertDialog.Builder(getActivity())
+                /* When the Date is picked and submitted, return the date to the AddReport fragment */
                 .setView(v)
                 .setTitle(R.string.date_picker_title)
                 .setPositiveButton(android.R.string.ok,
@@ -79,7 +80,7 @@ public class DatePickerFragment extends DialogFragment {
                 .create();
     }
 
-    private void sendResult(int resultCode, Calendar cal) {
+    private void sendResult(int resultCode, Calendar cal) { /* Returns date to AddReport Fragment */
         if (getTargetFragment() == null) {
             return;
         }

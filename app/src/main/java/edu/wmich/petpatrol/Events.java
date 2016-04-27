@@ -23,7 +23,7 @@ public class Events {
 
     private ArrayList<Event> mEvents;
 
-    public static Events get(Context context) {
+    public static Events get(Context context) { /* Events Singleton */
         if (sEvents == null) {
             sEvents = new Events(context);
         }
@@ -36,13 +36,13 @@ public class Events {
 
     public void addEvent(Event e){
         mEvents.add(e);
-    }
+    }   /* Add new event to the array */
 
-    public List<Event> getEvents() {
+    public List<Event> getEvents() {    /* Get all Events array */
         return mEvents;
     }
 
-    public Event getEvent(UUID id) {
+    public Event getEvent(UUID id) {    /* Get a single event specified by ID */
         for(Event event: mEvents) {
             if(event.getId().equals(id)) {
                 return event;

@@ -15,9 +15,9 @@ import java.util.UUID;
 
 public class Pet {
 
+        /* Pet Variables */
     private UUID mPetId;
     private boolean mFound;
-    // Insert location variable
     private String mPetType;
     private String mPetDescription;
     private String mPetName;
@@ -25,6 +25,7 @@ public class Pet {
     private String mDetails;
     private int mAdoptID;
 
+    /* Getters/Setters */
     public double getLongi() {
         return longi;
     }
@@ -44,9 +45,11 @@ public class Pet {
     private double longi;
     private double latit;
 
-    public Pet() {
+    public Pet() {  /* Creates new Pet object */
         mPetId = UUID.randomUUID();
     }
+
+    /* More Getters/Setters */
 
     public UUID getId() {
         return mPetId;
