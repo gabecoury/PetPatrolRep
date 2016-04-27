@@ -60,7 +60,7 @@ public class FinderFragment extends Fragment implements LocationListener{
         View v = inflater.inflate(R.layout.fragment_find, container, false);
 
         DownloadWebpageTask task = new DownloadWebpageTask();
-        task.execute("https://petpatrolback.herokuapp.com/");
+        task.execute("https://petpatrol.herokuapp.com/");
 
         //put the map in the page
         map = (MapView) v.findViewById(R.id.map);
@@ -172,7 +172,7 @@ public class FinderFragment extends Fragment implements LocationListener{
             // params comes from the execute() call: params[0] is the url.
             try {
                 try {
-                    URL url = new URL("http://testpetpatrol.herokuapp.com/views/map");
+                    URL url = new URL("http://petpatrol.herokuapp.com/views/map");
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     try {
                         ByteArrayOutputStream out = new ByteArrayOutputStream();

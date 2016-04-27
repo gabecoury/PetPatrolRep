@@ -240,7 +240,10 @@ public class Ushahidi {
             connection.setRequestProperty("Content-Type", CONTENT_TYPE);
 
             OutputStreamWriter wr= new OutputStreamWriter(connection.getOutputStream());
-            wr.write("{\"grant_type\": \"client_credentials\"," +
+            wr.write("{" +
+                    "\"username\": \"troyerms@gmail.com\"," +
+                    "\"password\": \"youshallnotpass\"," +
+                    "\"grant_type\": \"password\"," +
                     "\"client_id\": \"" + CLIENT_ID + "\"," +
                     "\"client_secret\": \"" + CLIENT_SECRET + "\"," +
                     "\"scope\": \"posts\"}");
