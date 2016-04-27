@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Random;
 
 //this class if for reporting  found pets and lost pets
 public class AddReportFragment extends Fragment{
@@ -54,7 +55,8 @@ public class AddReportFragment extends Fragment{
     private EditText PetContactEditText;
     private EditText PetDetailsEditText;
     private Spinner PetTypeSpinner;
-
+    private Button BTLocationSelect;
+    private Button BTEventLocation;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +82,27 @@ public class AddReportFragment extends Fragment{
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.pet_types, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         PetTypeSpinner.setAdapter(adapter);
+        BTLocationSelect = (Button) v.findViewById(R.id.buttonLocationSelect);
+        BTEventLocation = (Button) v.findViewById(R.id.buttonEventLocation);
+
+        // THESE TWO THINGS ARE FUNCTIONALLY THE SAME IT'S JUST THAT ONE IS FOR EVENT AND ONE IS FOR PET
+        BTEventLocation.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // TODO location select
+                mEvent.setLatit(new Random().nextInt(100) -50);
+                mEvent.setLongi(new Random().nextInt(100) -50);
+            }
+        });
+
+        // THIS ONE'S FOR PET
+        BTLocationSelect.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // TODO location select
+
+                mPet.setLatit(new Random().nextInt(100) -50);
+                mPet.setLongi(new Random().nextInt(100) -50);
+            }
+        });
 
         PetTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -92,8 +115,6 @@ public class AddReportFragment extends Fragment{
 
             }
         });
-
-
 
         final LinearLayout mLinearLayoutPet = (LinearLayout) v.findViewById(R.id.LinearLayoutPet);
         final LinearLayout mLinearLayoutEvent = (LinearLayout) v.findViewById(R.id.LinearLayoutEvent);

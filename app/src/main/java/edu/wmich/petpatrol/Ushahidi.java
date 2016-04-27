@@ -88,16 +88,16 @@ public class Ushahidi {
             String petContent = "";
 
             if(pet.getPetName().length() > 0){
-                petContent += pet.getPetName() + " - ";
+                petContent += "Name: " + pet.getPetName() + ". ";
             }
-            petContent += pet.getPetType() + " - " +
-                    pet.getPetDescription();
+
+            petContent += "Type: " + pet.getPetType() + ". " +
+                    "Description: " +
+                    pet.getPetDescription() + ". ";
 
             if(pet.getDetails().length() > 0){
-                petContent += " - " + pet.getDetails();
+                petContent += "Details: " + pet.getDetails() + ". ";
             }
-
-            Log.d("number", pet.getContactNumber() + "");
 
             if(pet.getContactNumber() != 0){
                 petContent += " Contact at " + pet.getContactNumber();
@@ -105,6 +105,7 @@ public class Ushahidi {
 
             Log.d("PetContent", petContent);
 
+            // TODO Fix location here
             OutputStreamWriter wr= new OutputStreamWriter(connection.getOutputStream());
             wr.write(
 
@@ -116,8 +117,8 @@ public class Ushahidi {
                         "\"values\":{" +
                             "\"location_default\":[" +
                                 "{" +
-                                    "\"lat\":" + "0" + "," + // This will need to updated when pets can store location info
-                                    "\"lon\":" + "0" +
+                                    "\"lat\":" + pet.getLatit() + "," + // This will need to updated when pets can store location info
+                                    "\"lon\":" + pet.getLongi() +
                                 "}" +
                             "]" +
                         "}," +
@@ -175,12 +176,13 @@ public class Ushahidi {
             }
 
             if(event.getContactNumber() != 0){
-               eventContent += " Contact at " + event.getContactNumber() + ".";
+               eventContent += " \nContact at " + event.getContactNumber() + ".";
             }
 
 
             Log.d("EventContent", eventContent);
 
+            // TODO fix location here too
             OutputStreamWriter wr= new OutputStreamWriter(connection.getOutputStream());
             wr.write(
                 "{" +
@@ -191,8 +193,8 @@ public class Ushahidi {
                     "\"values\":{" +
                         "\"location_default\":[" +
                             "{" +
-                                "\"lat\":" + "0" + "," + // This will need to updated when pets can store location info
-                                "\"lon\":" + "0" +
+                                "\"lat\":" + event.getLatit() + "," + // This will need to updated when pets can store location info
+                                "\"lon\":" + event.getLongi() +
                             "}" +
                         "]" +
                     "}," +

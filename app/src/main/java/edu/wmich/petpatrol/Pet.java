@@ -25,6 +25,25 @@ public class Pet {
     private String mDetails;
     private int mAdoptID;
 
+    public double getLongi() {
+        return longi;
+    }
+
+    public void setLongi(double longi) {
+        this.longi = longi;
+    }
+
+    public double getLatit() {
+        return latit;
+    }
+
+    public void setLatit(double latit) {
+        this.latit = latit;
+    }
+
+    private double longi;
+    private double latit;
+
     public Pet() {
         mPetId = UUID.randomUUID();
     }

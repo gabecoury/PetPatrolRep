@@ -129,7 +129,7 @@ public class FinderFragment extends Fragment implements LocationListener{
 
                 Event newEvent = new Event();
                 newEvent.setEventName(event.getString("title"));
-                newEvent.setDetails(event.getString("message"));
+                newEvent.setDetails(event.getString("content"));
                 //newEvent.setContactNumber(5555550 + i);
                 Location newLocation = new Location("");
 

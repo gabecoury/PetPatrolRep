@@ -43,7 +43,7 @@ Date completed: 04/03/16
         android:id="@+id/textViewMadePossible"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:textSize="36sp"
+        android:textSize="30sp"
         android:layout_centerVertical="true" />
 
     <TextView

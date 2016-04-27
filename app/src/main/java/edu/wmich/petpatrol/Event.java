@@ -16,6 +16,24 @@ public class Event {
     private Location mLocation;
     private int mContactNumber;
     private String mDetails;
+    private double latit;
+    private double longi;
+
+    public double getLongi() {
+        return longi;
+    }
+
+    public void setLongi(double longi) {
+        this.longi = longi;
+    }
+
+    public double getLatit() {
+        return latit;
+    }
+
+    public void setLatit(double latit) {
+        this.latit = latit;
+    }
 
     public Event() {
         mEventId = UUID.randomUUID();
