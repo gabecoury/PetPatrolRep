@@ -91,6 +91,7 @@ public class AddReportFragment extends Fragment{
                 // TODO location select
                 mEvent.setLatit(new Random().nextInt(100) -50);
                 mEvent.setLongi(new Random().nextInt(100) -50);
+                startActivity(new Intent(getActivity(), SelectLocationActivity.class));
             }
         });
 
@@ -101,6 +102,7 @@ public class AddReportFragment extends Fragment{
 
                 mPet.setLatit(new Random().nextInt(100) -50);
                 mPet.setLongi(new Random().nextInt(100) -50);
+                startActivity(new Intent(getActivity(), SelectLocationActivity.class));
             }
         });
 

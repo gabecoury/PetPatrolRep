@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/FFLayout"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
+
+    <org.osmdroid.views.MapView android:id="@+id/chooselocationmap"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Location"
+        android:id="@+id/BTChooseLocation"
+        android:layout_gravity="right|top"
+        android:layout_margin="8dp" />
+</FrameLayout>
