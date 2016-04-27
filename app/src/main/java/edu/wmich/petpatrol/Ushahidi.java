@@ -37,10 +37,10 @@ public class Ushahidi {
     public static JSONObject getPets(){
         try {
             //build the api string
-            String urlString = Uri.parse(backend_url + "/api/v3/posts")
+            String urlString = Uri.parse(backend_url + "/api/v3/posts?limit=10&offset=0&order=desc&orderby=created&status=all")
                     .buildUpon()
                     .build().toString();
-
+            Log.d("urlString", urlString);
             //get a new connection from the server
             HttpURLConnection connection = buildConnection(urlString, getAccessToken());
 

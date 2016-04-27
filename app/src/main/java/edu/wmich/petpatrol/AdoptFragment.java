@@ -295,7 +295,7 @@ public class AdoptFragment extends Fragment implements LocationListener {
             }
 
             //open the page
-            String url = "https://m.petfinder.com/petdetail/" + pet.getAdoptID();
+            String url = "http://m.petfinder.com/petdetail/" + pet.getAdoptID();
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
