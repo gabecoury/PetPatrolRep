@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.bonuspack.overlays.Marker;
@@ -116,6 +117,43 @@ public class FinderFragment extends Fragment implements LocationListener{
     public void updatePosts(JSONObject posts) {
         Events events = Events.get(getContext());
 
+        //initialize the list of events
+        List<Event> listEvents = events.getEvents();
+
+        try {
+            JSONArray results = posts.getJSONArray("results");
+            int count = posts.getInt("count");
+
+            for(int i = 0; i < count; i++){
+                JSONObject event = results.getJSONObject(i);
+
+                Event newEvent = new Event();
+                newEvent.setEventName(event.getString("title"));
+                newEvent.setDetails(event.getString("message"));
+                //newEvent.setContactNumber(5555550 + i);
+                Location newLocation = new Location("");
+
+                JSONObject location = event.getJSONObject("values").getJSONArray("location_default")
+                        .getJSONObject(0);
+
+                //variety
+                String latitude = "42.2" + i + "369117";
+
+                newLocation.setLatitude(location.getDouble("lat"));
+                newLocation.setLongitude(location.getDouble("lon"));
+                newEvent.setLocation(newLocation);
+
+                events.addEvent(newEvent);
+
+            }
+
+
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        /*
+
         //Sample data of the posts
         String[] names = {"Cute Dog", "Ugly Dog", "Short Dog", "The Fattest Cat I've Ever Seen",
                 "Kitty"};
@@ -138,9 +176,8 @@ public class FinderFragment extends Fragment implements LocationListener{
 
             events.addEvent(newEvent);
         }
+        */
 
-        //initialize the list of events
-        List<Event> listEvents = events.getEvents();
 
         //for each event, place down a marker
         for (Event event : listEvents){
