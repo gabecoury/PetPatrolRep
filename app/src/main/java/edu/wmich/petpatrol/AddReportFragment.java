@@ -32,7 +32,8 @@ public class AddReportFragment extends Fragment{
     private static final String DIALOG_DATE = "DialogDate";
     private static final String DIALOG_TIME = "DialogTime";
     private static final String TAG = "AddReportFragment";
-
+    private double lat;
+    private double lng;
     private RadioGroup mRadioGroupReportType;
     private Button mPetSubmitButton;
     private Button mEventSubmitButton;
@@ -63,6 +64,17 @@ public class AddReportFragment extends Fragment{
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        lat = Pets.get(getActivity()).getTemplat();
+        lng = Pets.get(getActivity()).getTemplng();
+        mPet.setLatit(lat);
+        mPet.setLongi(lng);
+        mEvent.setLatit(lat);
+        mEvent.setLongi(lng);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_report, container, false);
 
@@ -89,9 +101,8 @@ public class AddReportFragment extends Fragment{
         BTEventLocation.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO location select
-                mEvent.setLatit(new Random().nextInt(100) -50);
-                mEvent.setLongi(new Random().nextInt(100) -50);
                 startActivity(new Intent(getActivity(), SelectLocationActivity.class));
+
             }
         });
 
@@ -99,9 +110,6 @@ public class AddReportFragment extends Fragment{
         BTLocationSelect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO location select
-
-                mPet.setLatit(new Random().nextInt(100) -50);
-                mPet.setLongi(new Random().nextInt(100) -50);
                 startActivity(new Intent(getActivity(), SelectLocationActivity.class));
             }
         });
@@ -236,6 +244,9 @@ public class AddReportFragment extends Fragment{
                 FetchItemsTask ushahidi = new FetchItemsTask(mPet);
                 ushahidi.execute(ushahidi.POST_PET);
 
+
+                Pets.get(getActivity()).setTemplat(0);
+                Pets.get(getActivity()).setTemplng(0);
             }
         });
 
@@ -283,6 +294,9 @@ public class AddReportFragment extends Fragment{
 
                 FetchItemsTask ushahidi = new FetchItemsTask(mEvent);
                 ushahidi.execute(ushahidi.POST_EVENT);
+
+                Pets.get(getActivity()).setTemplat(0);
+                Pets.get(getActivity()).setTemplng(0);
             }
         });
 

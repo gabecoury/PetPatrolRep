@@ -9,6 +9,24 @@ import java.util.UUID;
 //singleton that stores all the lost or found pets.so basically this is collection of all of the events.
 public class Pets {
     private static Pets sPets;
+    private static double templng = 0;
+    private static double templat= 0;
+
+    public static double getTemplat() {
+        return templat;
+    }
+
+    public static void setTemplat(double templat) {
+        Pets.templat = templat;
+    }
+
+    public static double getTemplng() {
+        return templng;
+    }
+
+    public static void setTemplng(double templng) {
+        Pets.templng = templng;
+    }
 
     private ArrayList<Pet> mPets;
 

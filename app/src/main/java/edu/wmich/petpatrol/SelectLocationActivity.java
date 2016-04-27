@@ -51,6 +51,9 @@ public class SelectLocationActivity extends AppCompatActivity implements Locatio
                 centerlat = g.getLatitude();
                 centerlng = g.getLongitude();
                 Toast.makeText(SelectLocationActivity.this, "Centerlat: " + centerlat + " Centerlng: " + centerlng, Toast.LENGTH_LONG).show();
+                Pets.get(SelectLocationActivity.this).setTemplat(centerlat);
+                Pets.get(SelectLocationActivity.this).setTemplng(centerlng);
+                finish();
             }
         });
         try {
